@@ -1,0 +1,152 @@
+body {
+    margin: 0;
+    background-color: lightgrey;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    background-color: black;
+    color: whitesmoke;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid whitesmoke;
+}
+
+header ul li {
+    padding: 10px 40px;
+    border-right: 1px solid whitesmoke;
+    flex-grow: 1;
+    text-align: center;
+}
+
+header ul li:last-child {
+    border-right: none;
+}
+
+.carousel-wrapper{
+    height:95vh;
+    position:relative;
+    width:100%;
+    margin:0 auto;
+  }
+  .carousel-item{
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    opacity:0;
+    transition: all 0.5s ease-in-out;
+  }
+  .arrow{
+    border: solid black;
+      border-width: 0 3px 3px 0;
+      display: inline-block;
+      padding: 12px;
+  }
+  
+  .arrow-prev{
+    left:5%;
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%) rotate(135deg);
+  }
+   
+  .arrow-next{
+      right:5%;
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%) rotate(-45deg);
+    }
+  
+  
+  
+  
+  
+  
+  /*Select every element*/
+  [id^="item"] {
+      display: none;
+    }
+  
+  .item-1 {
+      z-index: 2;
+      opacity: 1;
+    background:url('images/computer-1185626_1920.jpg');
+    background-size:cover;
+    background-position: center;
+    }
+  .item-2{
+    background:url('images/paper-3213924_1920.jpg');
+     background-size:cover;
+     background-position: center;
+  }
+  .item-3{
+    background:url('images/startup-593341_1920.jpg');
+     background-size:cover;
+     background-position: center;
+  }
+  .item-4{
+    background:url('images/workplace-1245776_1920.jpg');
+     background-size:cover;
+     background-position: center;
+  }
+  
+  
+  *:target ~ .item-1 {
+      opacity: 0;
+    }
+  
+  #item-1:target ~ .item-1 {
+      opacity: 1;
+    }
+  
+  #item-2:target ~ .item-2, #item-3:target ~ .item-3, #item-4:target ~ .item-4{
+      z-index: 3;
+      opacity: 1;
+    }
+
+
+  
+
+
+  .login_page {
+    display: none;
+    width: 100%;
+    height: 95vh;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login_wrapper form, .registry_wrapper form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 50px;
+  }
+
+  .registry_wrapper form {
+    display: none;
+  }
+
+  .login_wrapper form p, .registry_wrapper form p{
+    text-align: center;
+  }
+
+  .login_wrapper form *,  .registry_wrapper form *{
+    margin: 10px;
+  }
+  
+footer {
+    background-color: black;
+    color: whitesmoke;
+    text-align: center;
+    padding: 20px;
+}
+
+footer p {
+    margin: 0;
+}

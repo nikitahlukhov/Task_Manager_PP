@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Task Management 3000</title>
+  </head>
+  <body>
+    <header>
+      <ul>
+        <li>Home</li>
+        <li>Tasks</li>
+        <li>Employees</li>
+        <li>Contacts</li>
+        <li id="login">Login</li>
+      </ul>
+      <div class="carousel-wrapper">
+        <span id="item-1"></span>
+        <span id="item-2"></span>
+        <span id="item-3"></span>
+        <span id="item-4"></span>
+        <div class="carousel-item item-1">
+          <a class="arrow arrow-prev" href="#item-4"></a>
+          <a class="arrow arrow-next" href="#item-2"></a>
+        </div>
+
+        <div class="carousel-item item-2">
+          <a class="arrow arrow-prev" href="#item-1"></a>
+          <a class="arrow arrow-next" href="#item-3"></a>
+        </div>
+
+        <div class="carousel-item item-3">
+          <a class="arrow arrow-prev" href="#item-2"></a>
+          <a class="arrow arrow-next" href="#item-4"></a>
+        </div>
+        <div class="carousel-item item-4">
+          <a class="arrow arrow-prev" href="#item-3"></a>
+          <a class="arrow arrow-next" href="#item-1"></a>
+        </div>
+        
+      </div>
+    </header>
+    <main>
+      <div class="login_page">
+        <div class="login_wrapper">
+          <form action="">
+            <p>Sign in or Sign up</p>
+            <input type="text" placeholder="Login" id="login_input_login">
+            <input type="password" placeholder="Password" id="login_input_password">
+            <button id="sign_in">Sign in</button>
+            <button id="registry">Sign up</button>
+          </form>
+        </div>
+        <div class="registry_wrapper">
+          <form action="">
+            <p>To register fill in all the forms</p>
+            <input type="text" placeholder="Login" id="registry_input_login">
+            <input type="password" placeholder="Password" id="registry_input_password">
+            <input type="email" placeholder="email" id="registry_input_email">
+            <button id="save">Save</button>
+          </form>
+        </div>
+        
+      </div>
+
+
+    </main>
+    <footer>
+      <p>&copy; 2019 Task Management 3000, All rights reserved</p>
+    </footer>
+    <script src="index.js"></script>
+  </body>
+</html>
