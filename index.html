@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    
     <link rel="stylesheet" href="index.css" />
     <title>Task Management 3000</title>
   </head>
+
   <body>
+    
+
+
     <header>
-      <ul>
-        <li>Home</li>
-        <li>Tasks</li>
-        <li>Employees</li>
-        <li>Contacts</li>
-        <li id="login">Login</li>
-      </ul>
+      <nav id="logged_out">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li>Tasks</li>
+          <li>Employees</li>
+          <li class="contacts_nav">Contacts</li>
+          <li id="sign_in">Sign In/ Sign Up</li>
+        </ul>
+      </nav>
+      <nav id="logged_in">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li>Tasks</li>
+          <li>Employees</li>
+          <li class="contacts_nav">Contacts</li>
+          <li id="logout">logout</li>
+        </ul>
+      </nav>
       <div class="carousel-wrapper">
         <span id="item-1"></span>
         <span id="item-2"></span>
@@ -39,37 +56,85 @@
           <a class="arrow arrow-prev" href="#item-3"></a>
           <a class="arrow arrow-next" href="#item-1"></a>
         </div>
-        
       </div>
     </header>
     <main>
-      <div class="login_page">
-        <div class="login_wrapper">
+      <div class="sign_in_page">
+        <div class="sign_in_wrapper">
           <form action="">
             <p>Sign in or Sign up</p>
-            <input type="text" placeholder="Login" id="login_input_login">
-            <input type="password" placeholder="Password" id="login_input_password">
-            <button id="sign_in">Sign in</button>
-            <button id="registry">Sign up</button>
+            <input type="text" placeholder="Login" id="sign_in_login" />
+            <input
+              type="password"
+              placeholder="Password"
+              id="sign_in_password"
+            />
+            <button id="sign_in_button">Sign in</button>
+            <button id="sign_up">Sign up</button>
           </form>
         </div>
-        <div class="registry_wrapper">
+        <div class="sign_up_wrapper">
           <form action="">
             <p>To register fill in all the forms</p>
-            <input type="text" placeholder="Login" id="registry_input_login">
-            <input type="password" placeholder="Password" id="registry_input_password">
-            <input type="email" placeholder="email" id="registry_input_email">
+            <input type="text" placeholder="Login" id="sign_up_login" />
+            <input
+              type="password"
+              placeholder="Password"
+              id="sign_up_password"
+            />
+            <input type="email" placeholder="email" id="sign_up_email" />
             <button id="save">Save</button>
           </form>
         </div>
-        
       </div>
-
-
+      <div class="contacts">
+        <div id="map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2541.521899943991!2d30.485211115867155!3d50.43137879661971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cee98e03beb3%3A0x4e0ae58cf3aa69f4!2sEPAM%20Systems!5e0!3m2!1sru!2sua!4v1577301610728!5m2!1sru!2sua"
+            width="600"
+            height="450"
+            frameborder="0"
+            style="border:0;"
+            allowfullscreen=""
+          ></iframe>
+        </div>
+        <div id="map_info">
+          <p><strong>Adress:</strong>Kudryashova Street, Kyiv</p>
+          <p><strong>Phone:</strong>044 390 5457</p>
+          <p><strong>Email:</strong> INVESTORS@EPAM.COM</p>
+          <p>
+            <a href="https://twitter.com/epam_ukraine"
+              ><strong>Twitter</strong></a
+            >
+          </p>
+          <p>
+            <a href="https://www.facebook.com/EPAM.Ukraine"
+              ><strong>Facebook</strong></a
+            >
+          </p>
+        </div>
+      </div>
     </main>
     <footer>
-      <p>&copy; 2019 Task Management 3000, All rights reserved</p>
+      <div id="footer_left">
+        <p>&copy; 2019 Task Management 3000, All rights reserved</p>
+      </div>
+      <div id="footer_right">
+        
+
+          <input type="button" value="Share" id="share_button" />
+          <br />
+          <div id="share_link_container">
+            <span>X</span>
+            <p>Share Link:</p> 
+            <textarea id="urlCopied" rows="1" cols="30" style="resize: none; overflow: hidden; " wrap="off" ></textarea>
+            <button id="share_link_copy">Copy</button>
+          </div>
+         
+      
+      </div>
     </footer>
-    <script src="index.js"></script>
+    
+    <script src="index.js" type="module"></script>
   </body>
 </html>
