@@ -1,9 +1,25 @@
 import login_page from './login.js';
 import contacts_page from './contacts.js';
 import logout from './logout.js';
+import profile from './profile.js'
 logout();
 login_page();
 contacts_page();
+profile();
+
+
+
+let home = document.querySelectorAll('.home_button');
+for (let i = 0; i < home.length; i++) {
+    home[i].addEventListener('click', () => {
+        let arr = document.querySelectorAll('main > *');
+                for (let i=0; i<arr.length; i++){
+                    arr[i].style.display = 'none'; 
+                }
+        document.querySelector('.carousel-wrapper').style.display = 'flex';
+    });
+}
+
 
 if (!window.localStorage.users){
     let registeredUsers = [{
@@ -14,6 +30,11 @@ if (!window.localStorage.users){
         loggedIn: false,
     }];
         window.localStorage.users = JSON.stringify(registeredUsers);
+}
+
+if (!window.localStorage.tasks){
+    let tasks = ['do smth', 'chill out', 'work work work'];
+    window.localStorage.tasks = JSON.stringify(tasks);
 }
 
 if (isLogged()){
@@ -28,9 +49,9 @@ function isLogged(){
         for (let i = 0; i<usersArray.length; i++){
             if(usersArray[i].loggedIn == true){
                 return true
-            } else {
-                return false
             }
+            return false
+            
         }
     
 }

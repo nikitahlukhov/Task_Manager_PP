@@ -18,7 +18,7 @@
         
         
         login.addEventListener('click', () => {
-            carousel.style.display = 'none';
+            showElement()
             sign_up_form.style.display = 'none';
             sign_in_page.style.display = 'flex';
             sign_in_form.style.display = 'flex';
@@ -46,6 +46,9 @@
                 usersArray[i].loggedIn = true;
                 window.localStorage.users = JSON.stringify(usersArray);
                 document.getElementById('logged_out').style.display = 'none';
+
+                showElement()
+                document.getElementById('wrapper').style.display = 'block';
                 document.getElementById('logged_in').style.display = 'block';
                 event.preventDefault()
                 
@@ -185,7 +188,13 @@
                 event.preventDefault()
             }
 
-            
+            function showElement(){
+                let arr = document.querySelectorAll('main > *');
+                for (let i=0; i<arr.length; i++){
+                    arr[i].style.display = 'none'; 
+                }
+                
+            }
     } 
     
     

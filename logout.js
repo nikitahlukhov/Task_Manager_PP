@@ -7,8 +7,14 @@ export default function logout() {
             if(usersArray[i].loggedIn == true) {
                 usersArray[i].loggedIn = false;
                 window.localStorage.users = JSON.stringify(usersArray);
-                document.getElementById('logged_out').style.display = 'block';
+                let arr = document.querySelectorAll('main > *');
+                for (let i=0; i<arr.length; i++){
+                    arr[i].style.display = 'none'; 
+                }
                 document.getElementById('logged_in').style.display = 'none';
+                document.getElementById('logged_out').style.display = 'block';
+                document.querySelector('.carousel-wrapper').style.display = 'block';
+
                 event.preventDefault()
             }
         }

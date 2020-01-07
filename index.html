@@ -17,7 +17,7 @@
     <header>
       <nav id="logged_out">
         <ul>
-          <li><a href="index.html">Home</a></li>
+          <li class="home_button">Home</li>
           <li>Tasks</li>
           <li>Employees</li>
           <li class="contacts_nav">Contacts</li>
@@ -26,13 +26,23 @@
       </nav>
       <nav id="logged_in">
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li>Tasks</li>
-          <li>Employees</li>
+          <li class="home_button">Home</li>
+          <li id="nav_profile">Profile
+            <ul id="nav_profile_ul">
+              <li id="tasks_button">Tasks</li>
+              <li>Employees</li>
+              <li id="newTask_button">New Task</li>
+              <li>Messages</li>
+              <li>New Message</li>
+            </ul>
+          </liid="">
           <li class="contacts_nav">Contacts</li>
           <li id="logout">logout</li>
         </ul>
       </nav>
+      
+    </header>
+    <main>
       <div class="carousel-wrapper">
         <span id="item-1"></span>
         <span id="item-2"></span>
@@ -57,8 +67,6 @@
           <a class="arrow arrow-next" href="#item-1"></a>
         </div>
       </div>
-    </header>
-    <main>
       <div class="sign_in_page">
         <div class="sign_in_wrapper">
           <form action="">
@@ -112,6 +120,48 @@
               ><strong>Facebook</strong></a
             >
           </p>
+        </div>
+      </div>
+
+      <div id="newTask_wrapper">
+        <header>
+          <div class="page-banner">
+            <h1 class="title">add a task</h1>
+            <form calss="search-tasks">
+              <input type="text" placeholder="Search task..." />
+            </form>
+          </div>
+          <form id="add-task">
+            <input type="text" placeholder="Add a task..." />
+            <button>Add</button>
+          </form>
+          
+        </header>
+        <div class="task-list">
+          <h2 class="title">tasks</h2>
+          <ul>
+            
+            
+          </ul>
+        </div>
+      </div>
+      <div id="tasks_wrapper">
+        <header>
+          <div class="page-banner">
+            <h1 class="title">add a task</h1>
+            <form class="search-tasks">
+              <input type="text" placeholder="Search task..." />
+            </form>
+          </div>
+          
+          
+        </header>
+        <div class="task-list">
+          <h2 class="title">tasks</h2>
+          <ul>
+            
+            
+          </ul>
         </div>
       </div>
     </main>
