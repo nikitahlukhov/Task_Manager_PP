@@ -8,6 +8,7 @@
     
     <link rel="stylesheet" href="index.css" />
     <title>Task Management 3000</title>
+    
   </head>
 
   <body>
@@ -29,13 +30,12 @@
           <li class="home_button">Home</li>
           <li id="nav_profile">Profile
             <ul id="nav_profile_ul">
-              <li id="tasks_button">Tasks</li>
               <li>Employees</li>
-              <li id="newTask_button">New Task</li>
+              <li id="tasks_button">Tasks</li>
               <li>Messages</li>
               <li>New Message</li>
             </ul>
-          </liid="">
+          </li>
           <li class="contacts_nav">Contacts</li>
           <li id="logout">logout</li>
         </ul>
@@ -71,11 +71,12 @@
         <div class="sign_in_wrapper">
           <form action="">
             <p>Sign in or Sign up</p>
-            <input type="text" placeholder="Login" id="sign_in_login" />
+            <input type="text" placeholder="Login" id="sign_in_login" value="admin"/>
             <input
               type="password"
               placeholder="Password"
               id="sign_in_password"
+              value="admin"
             />
             <button id="sign_in_button">Sign in</button>
             <button id="sign_up">Sign up</button>
@@ -123,47 +124,39 @@
         </div>
       </div>
 
-      <div id="newTask_wrapper">
-        <header>
-          <div class="page-banner">
-            <h1 class="title">add a task</h1>
-            <form calss="search-tasks">
-              <input type="text" placeholder="Search task..." />
-            </form>
-          </div>
-          <form id="add-task">
-            <input type="text" placeholder="Add a task..." />
-            <button>Add</button>
-          </form>
-          
-        </header>
-        <div class="task-list">
-          <h2 class="title">tasks</h2>
-          <ul>
-            
-            
-          </ul>
-        </div>
-      </div>
       <div id="tasks_wrapper">
         <header>
-          <div class="page-banner">
-            <h1 class="title">add a task</h1>
-            <form class="search-tasks">
-              <input type="text" placeholder="Search task..." />
+          <div id="page-banner">
+            <h1 class="title">Tasks</h1>
+            <form id="add-task">
+              <input type="text" placeholder="Add a task..." />
+              <button >Add</button>
+              <input type="text" placeholder="Add a subtask..." />
+              <input type="text" placeholder="Add a subtask..." />
+              <input type="text" placeholder="Add a subtask..." />
+              
+              <button id="add_subtask_button">Add subtask</button>
+              
+            </form>
+            <form id="search-tasks">
+              <input type="text" placeholder="Search tasks..." />
             </form>
           </div>
-          
-          
         </header>
-        <div class="task-list">
+        <div id="task-list">
           <h2 class="title">tasks</h2>
           <ul>
             
-            
           </ul>
         </div>
+        
+        
       </div>
+      
+          
+          
+        
+      
     </main>
     <footer>
       <div id="footer_left">
@@ -184,7 +177,7 @@
       
       </div>
     </footer>
-    
-    <script src="index.js" type="module"></script>
+    <script src="./dist/bundle.js"></script>
+
   </body>
 </html>

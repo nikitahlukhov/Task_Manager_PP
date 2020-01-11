@@ -1,7 +1,8 @@
-body {
+body, html, main {
     margin: 0;
     background-color: lightgrey;
-    
+    position: relative;
+    height: 100%;
 }
 
 header nav ul {
@@ -52,7 +53,7 @@ nav li:hover{
   display: block;
   left: 0;
   top: 102%;
-  z-index: 100;
+  z-index: 50;
 }
 
 #nav_profile_ul {
@@ -74,11 +75,12 @@ nav li:hover{
 
 
 .carousel-wrapper{
-    height:95vh;
+    height:100%;
     position:relative;
     width:100%;
     margin:0 auto;
     display: flex;
+
   }
   .carousel-item{
     position:absolute;
@@ -123,22 +125,22 @@ nav li:hover{
   .item-1 {
       z-index: 2;
       opacity: 1;
-    background:url('images/computer-1185626_1920.jpg');
+    background:url('./src/images/computer-1185626_1920.jpg');
     background-size:cover;
     background-position: center;
     }
   .item-2{
-    background:url('images/paper-3213924_1920.jpg');
+    background:url('./src/images/paper-3213924_1920.jpg');
      background-size:cover;
      background-position: center;
   }
   .item-3{
-    background:url('images/startup-593341_1920.jpg');
+    background:url('./src/images/startup-593341_1920.jpg');
      background-size:cover;
      background-position: center;
   }
   .item-4{
-    background:url('images/workplace-1245776_1920.jpg');
+    background:url('./src/images/workplace-1245776_1920.jpg');
      background-size:cover;
      background-position: center;
   }
@@ -214,7 +216,7 @@ nav li:hover{
 
 
 /*New task*/
-#newTask_wrapper, #tasks_wrapper{
+#tasks_wrapper{
   width: 90%;
   max-width: 960px;
   margin: 20px auto;
@@ -222,25 +224,25 @@ nav li:hover{
   box-shadow: 0px 1px 6px rgba(0,0,0,0.2);
   box-sizing: border-box;
   padding: 0 0 20px;
-  overflow: hidden;
+  overflow: auto;
+  height: 90%;
   border: 1px solid lightgray;
   display: none;
-  height: 95% vh;
 }
 
-.page-banner{
-  background: .eee ;
+#page-banner{
+  background: #eee ;
   padding: 10px 0;
 
 }
 
-.page-banner h1, .page-banner p{
+#page-banner h1, #page-banner p{
   width: 100%;
   text-align: center;
   margin: 10px 0;
 }
 
-.page-banner input{
+#page-banner input{
   width: 90%;
   max-width: 300px;
   margin: 20px auto;
@@ -252,22 +254,22 @@ nav li:hover{
   color: #444;
 }
 
-.task-list, #add-task {
+#task-list, #add-task{
   margin: 30px;
 }
 
-.task-list ul {
+#task-list ul {
   list-style-type: none;
   padding: 0;
 }
 
-.task-list li{
+#task-list li{
   padding: 20px;
   border-left: 5px solid #ddd;
   margin: 20px 10px;
 }
 
-.task-list li:hover{
+#task-list li:hover{
   border-color: #9361bf;
 }
 
@@ -318,14 +320,25 @@ nav li:hover{
   color: white;
 }
 
+#add-task #add_subtask_button {
+  border: 1px solid #9361bf;
+  background: #9361bf;
+  padding: 10px 20px;
+  font-size: 16px;
+  display: inline-block;
+  margin: 0;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  width: 400px;
+  margin: 20px 0;
+  border-left: 0;
+  color: white;
+}
+
 #add-task:after{
   content: '';
   display: block;
   clear: both;
-}
-
-#add-task #hide{
-width: 30px;
 }
 
 #add-task label{
@@ -380,7 +393,7 @@ footer {
     text-align: center;
     padding: 20px 0;
     position: absolute;
-    top: 100%;
+    bottom: -10;
     width: 100%;
     z-index: 5;
 }
