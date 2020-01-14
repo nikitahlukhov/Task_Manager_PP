@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-equiv='X-UA-Compatible' content='IE=11' />
     
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     
     <link rel="stylesheet" href="index.css" />
     <title>Task Management 3000</title>
@@ -32,8 +33,7 @@
             <ul id="nav_profile_ul">
               <li>Employees</li>
               <li id="tasks_button">Tasks</li>
-              <li>Messages</li>
-              <li>New Message</li>
+              <li id="messages_button">Messages</li>
             </ul>
           </li>
           <li class="contacts_nav">Contacts</li>
@@ -126,34 +126,86 @@
 
       <div id="tasks_wrapper">
         <header>
-          <div id="page-banner">
+          <div class="page-banner">
             <h1 class="title">Tasks</h1>
-            <form id="add-task">
-              <input type="text" placeholder="Add a task..." />
-              <button >Add</button>
-              <input type="text" placeholder="Add a subtask..." />
-              <input type="text" placeholder="Add a subtask..." />
-              <input type="text" placeholder="Add a subtask..." />
+            <div>
+              <form id="add-task">
+                <input type="text" placeholder="Add a task..." />
+                <button id="add_task_button">Add</button>
+                <button id="add_subtask_button">Add subtask</button>
+                <input type="text" placeholder="Add a subtask..." />
+                <button class="delete_subtask">delete</button>
+                <input type="text" placeholder="Add a subtask..." />
+                <button class="delete_subtask">delete</button>
+                <input type="text" placeholder="Add a subtask..." />
+                <button class="delete_subtask">delete</button>
+                
+                
+                
+              </form>
+            </div>
+            <div >
               
-              <button id="add_subtask_button">Add subtask</button>
+                <select id="select_task" multiple>
+                </select>
+                
               
-            </form>
+              
+            </div>
+            
             <form id="search-tasks">
               <input type="text" placeholder="Search tasks..." />
             </form>
           </div>
+          
         </header>
         <div id="task-list">
           <h2 class="title">tasks</h2>
           <ul>
-            
           </ul>
         </div>
         
         
       </div>
       
+      <div id="messages_wrapper">
+        <header>
+          <div class="page-banner">
+            <h1 class="title">Messages</h1>
+            <div>
+              <form id="add-message">
+                <input id="message_subject" type="text" placeholder="Subject" />
+                <button id="add_message_button">send</button>
+                <textarea id="message_text" type="text" placeholder="Your message..." style="resize: none;""></textarea>
+                
+                
+                
+                
+              </form>
+            </div>
+            <div >
+              
+                <select id="select_message" multiple>
+                </select>
+                
+              
+              
+            </div>
+            
+            <form id="search-messages">
+              <input type="text" placeholder="Search messages..." />
+            </form>
+          </div>
           
+        </header>
+        <div id="message-list">
+          <h2 class="title">messages</h2>
+          <ul>
+          </ul>
+        </div>
+        
+        
+      </div> 
           
         
       
@@ -177,7 +229,7 @@
       
       </div>
     </footer>
-    <script src="./dist/bundle.js"></script>
+    <script src="./src/index.js" type="module"></script>
 
   </body>
 </html>

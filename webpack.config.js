@@ -1,4 +1,5 @@
-module.exports = {
+module.exports = {  
+    devtool: "source-map",
 
     //define an entry point
     entry: './src/index.js',
@@ -16,7 +17,15 @@ module.exports = {
                 exclude: /(node_modules)/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ['@babel/preset-env']
+                    presets: [[
+                        '@babel/preset-env',
+                        {
+                          targets: {
+                            browsers: ["IE 11"],
+                          },
+                        useBuiltIns: 'usage'
+                        }
+                ]]
                 }
             }
         ]

@@ -41,21 +41,29 @@
             hasPass.push(usersArray[i].password)
             if(userName_SignIn.value == usersArray[i].name 
                 && password_SignIn.value == usersArray[i].password
-                && usersArray[i].isAdmin == true) {
+                && usersArray[i].isAdmin == true) 
+                {
                 clearInput();
                 usersArray[i].loggedIn = true;
                 window.localStorage.users = JSON.stringify(usersArray);
                 document.getElementById('logged_out').style.display = 'none';
 
                 showElement()
-                document.getElementById('wrapper').style.display = 'block';
+                document.getElementById('task_wrapper').style.display = 'block';
                 document.getElementById('logged_in').style.display = 'block';
                 event.preventDefault()
                 
             } else if (userName_SignIn.value == usersArray[i].name 
                 && password_SignIn.value == usersArray[i].password) {
                 clearInput()
-                alert('helo')
+                usersArray[i].loggedIn = true;
+                window.localStorage.users = JSON.stringify(usersArray);
+                document.getElementById('logged_out').style.display = 'none';
+
+                showElement()
+                document.getElementById('task_wrapper').style.display = 'block';
+                document.getElementById('logged_in').style.display = 'block';
+                event.preventDefault()
             }
             
         }

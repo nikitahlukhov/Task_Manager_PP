@@ -6,7 +6,10 @@ logout();
 login_page();
 contacts_page();
 
-
+// missing forEach on NodeList for IE11
+if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+  }
 
 let home = document.querySelectorAll('.home_button');
 for (let i = 0; i < home.length; i++) {
@@ -20,24 +23,6 @@ for (let i = 0; i < home.length; i++) {
 }
 
 
-if (!window.localStorage.users){
-    let registeredUsers = [{
-        name: "admin",
-        password: "admin",
-        email: "admin@gmail.com",
-        isAdmin: true,
-        loggedIn: false,
-    }];
-        window.localStorage.users = JSON.stringify(registeredUsers);
-        
-}
-
-if (!window.localStorage.tasks){
-    let tasks = ['do smth', 'chill out', 'work work work', 'do smth', 'chill out', 'work work work', 'do smth', 'chill out', 'work work work'];
-    window.localStorage.tasks = JSON.stringify(tasks);
-}
-
-profile();
 
 if (isLogged()){
     document.getElementById('logged_out').style.display = 'none'
@@ -45,11 +30,71 @@ if (isLogged()){
     document.getElementById('logged_in').style.display = 'none'
 }
 
+if (!window.localStorage.users){
+    let registeredUsers = [{
+        name: "admin",
+        password: "admin",
+        email: "admin@gmail.com",
+        messages: {
+            sentMessages: [],
+            inboxMessages: [],
+        },
+        isAdmin: true,
+        loggedIn: false,
+    },
+    {
+        name: "vanya",
+        password: "vanya",
+        email: "admin@gmail.com",
+        loggedIn: false,
+        messages: {
+            sentMessages: [],
+            inboxMessages: [],
+        },
+    },
+    {
+        name: "nikita",
+        password: "nikita",
+        email: "admin@gmail.com",
+        loggedIn: false,
+        messages: {
+            sentMessages: [],
+            inboxMessages: [],
+        },
+    },
+    {
+        name: "vova",
+        password: "vova",
+        email: "admin@gmail.com",
+        loggedIn: false,
+        messages: {
+            sentMessages: [],
+            inboxMessages: [],
+        },
+    },
+];
+        window.localStorage.users = JSON.stringify(registeredUsers);
+        
+}
+
+if (!window.localStorage.tasks){
+    let tasks = [];
+    window.localStorage.tasks = JSON.stringify(tasks);
+}
+
+
+
+
+
+profile();
 
 function isLogged(){
     let usersArray = JSON.parse(window.localStorage.users);
-        for (let i = 0; i<usersArray.length; i++){
-            if(usersArray[i].loggedIn == true){
+    
+        for (let i = 0; i < usersArray.length; i++){
+            if(usersArray[i].loggedIn == false){
+                continue
+            } else if (usersArray[i].loggedIn == true){
                 return true
             }
             return false
