@@ -6,10 +6,7 @@ logout();
 login_page();
 contacts_page();
 
-// missing forEach on NodeList for IE11
-if (window.NodeList && !NodeList.prototype.forEach) {
-    NodeList.prototype.forEach = Array.prototype.forEach;
-  }
+
 
 let home = document.querySelectorAll('.home_button');
 for (let i = 0; i < home.length; i++) {
@@ -23,12 +20,15 @@ for (let i = 0; i < home.length; i++) {
 }
 
 
+profile();
 
 if (isLogged()){
     document.getElementById('logged_out').style.display = 'none'
 } else if (!isLogged()){
     document.getElementById('logged_in').style.display = 'none'
 }
+
+
 
 if (!window.localStorage.users){
     let registeredUsers = [{
@@ -86,14 +86,14 @@ if (!window.localStorage.tasks){
 
 
 
-profile();
+
 
 function isLogged(){
     let usersArray = JSON.parse(window.localStorage.users);
     
         for (let i = 0; i < usersArray.length; i++){
             if(usersArray[i].loggedIn == false){
-                continue
+            continue
             } else if (usersArray[i].loggedIn == true){
                 return true
             }

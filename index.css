@@ -79,7 +79,7 @@ nav li:hover{
     position:relative;
     width:100%;
     margin:0 auto;
-    display: none;
+    display: block;
 
   }
   .carousel-item{
@@ -230,9 +230,7 @@ nav li:hover{
   display: none;
 }
 
-#messages_wrapper {
-  display: block;
-}
+
 
 .page-banner{
   background: #eee ;

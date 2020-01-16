@@ -12,7 +12,6 @@ export default function profile() {
   } 
     
   }
-
   
 
     tasks_button.addEventListener('click', ()=> {
@@ -196,7 +195,7 @@ export default function profile() {
 
     selected.forEach(option => {
       task.contributors.push(option);
-      contributors.textContent += `${option} `;
+      contributors.textContent += option + ''; //`
     });
       
       
@@ -351,7 +350,7 @@ message_list.addEventListener('click', (e) => {
       tempMessage.status = 'unseen';
       // add text content
       if(subject){
-        subjectName.textContent =`Subject: ${subject}`;}
+        subjectName.textContent ='Subject:' + subject;}//`
       else if (!subject){
         subjectName.textContent = '(no subject)';
       }
@@ -365,7 +364,7 @@ message_list.addEventListener('click', (e) => {
 
     selected.forEach(option => {
       tempMessage.contributors.push(option);
-      contributors.textContent += `${option} `;
+      contributors.textContent += 'option';//`
     });
       
       
@@ -434,7 +433,7 @@ message_list.addEventListener('click', (e) => {
 
 // add text content
     if(subject){
-      subjectName.textContent =`Subject: ${subject}`;}
+      subjectName.textContent ='Subject:' + subject;}//`
     else if (!subject){
       subjectName.textContent = '(no subject)';
     }
@@ -446,7 +445,7 @@ message_list.addEventListener('click', (e) => {
   
 
   userSentMessages[i].contributors.forEach(option => {
-    contributors.textContent += `${option} `;
+    contributors.textContent += option; //`
   });
 
       // add classes
