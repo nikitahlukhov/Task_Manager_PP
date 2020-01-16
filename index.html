@@ -193,8 +193,15 @@
           </div>
           
         </header>
-        <div id="message-list">
-          <h2 class="title">messages</h2>
+        <button id="sent_message_button">Sent</button>
+        <button id="inbox_message_button" >Inbox</button>
+        <div id="message-list_sent" >
+          <h2 class="title">sent messages</h2>
+          <ul>
+          </ul>
+        </div>
+        <div id="message-list_inbox" class="sub_task_invis">
+          <h2 class="title">inbox</h2>
           <ul>
           </ul>
         </div>
@@ -224,7 +231,7 @@
       
       </div>
     </footer>
-    <script src="./dist/bundle.js"></script>
+    <script src="./src/index.js" type="module"></script>
 
   </body>
 </html>

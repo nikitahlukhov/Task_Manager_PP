@@ -79,7 +79,7 @@ nav li:hover{
     position:relative;
     width:100%;
     margin:0 auto;
-    display: block;
+    display: none;
 
   }
   .carousel-item{
@@ -230,7 +230,9 @@ nav li:hover{
   display: none;
 }
 
-
+#messages_wrapper {
+  display: block;
+}
 
 .page-banner{
   background: #eee ;
@@ -254,16 +256,16 @@ nav li:hover{
   color: #444;
 }
 
-#task-list, #add-task, #add-message, #message-list{
+#task-list, #add-task, #add-message, #message-list_sent, #message-list_inbox{
   margin: 30px;
 }
 
-#task-list ul, #message-list ul {
+#task-list ul, #message-list_sent ul,  #message-list_inbox ul{
   list-style-type: none;
   padding: 0;
 }
 
-#task-list li, #message-list li{
+#task-list li, #message-list_sent li, #message-list_inbox li{
   position: relative;
   z-index: 100;
   padding: 20px;
@@ -272,15 +274,15 @@ nav li:hover{
   
 }
 
-#task-list li:hover, #message-list li:hover{
+#task-list li:hover, #message-list_sent li:hover, #message-list_inbox li:hover{
   border-color: #9361bf;
 }
 
-#message-list li.unseen {
+#message-list_sent li.unseen,  #message-list_inbox li.unseen{
   border-color: red;
 }
 
-#message-list li.seen {
+#message-list_sent li.seen, #message-list_inbox li.seen {
   border-color: green;
 }
 
@@ -379,7 +381,8 @@ line-height: 52px;
 
 
 
-#message-list ul li span:nth-child(2) {
+#message-list_sent ul li span:nth-child(2),
+#message-list_inbox ul li span:nth-child(2)  {
   display: inline-block;
   position: relative;
   max-width: 100px;
@@ -390,7 +393,17 @@ line-height: 52px;
   vertical-align: middle;
 }
 
-#message-list ul li span:first-child {
+#message-list_sent ul li span:nth-child(3),
+#message-list_inbox ul li span:nth-child(3) {
+  display: inline-block;
+  position: relative;
+  margin-left: 20px;
+  z-index: -1;
+  vertical-align: middle;
+}
+
+#message-list_sent ul li span:first-child,
+#message-list_inbox ul li span:first-child {
   display: inline-block;
   vertical-align: middle;
   margin-right: 20px;
@@ -398,10 +411,17 @@ line-height: 52px;
 }
 
 
-#message-list ul li span:nth-child(2).sub_task_invis {
+#message-list_sent ul li span:nth-child(2).sub_task_invis,
+#message-list_inbox ul li span:nth-child(2).sub_task_invis {
   visibility: hidden;
   
 }
+
+#message-list_inbox.sub_task_invis,
+#message-list_sent.sub_task_invis {
+  display: none;
+}
+
 
 .sub_task_invis {
   display: none;

@@ -20,13 +20,9 @@ for (let i = 0; i < home.length; i++) {
 }
 
 
-profile();
 
-if (isLogged()){
-    document.getElementById('logged_out').style.display = 'none'
-} else if (!isLogged()){
-    document.getElementById('logged_in').style.display = 'none'
-}
+
+
 
 
 
@@ -85,6 +81,12 @@ if (!window.localStorage.tasks){
 
 
 
+if (isLogged()){
+    document.getElementById('logged_out').style.display = 'none'
+} else if (!isLogged()){
+    document.getElementById('logged_in').style.display = 'none'
+}
+
 
 
 
@@ -102,6 +104,8 @@ function isLogged(){
         }
     
 }
+
+profile();
 
 let shareButton = document.getElementById('share_button');
 let copyLink = document.getElementById('share_link_copy');

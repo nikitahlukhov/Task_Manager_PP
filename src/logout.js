@@ -1,7 +1,7 @@
 export default function logout() {
     let logout = document.getElementById('logout');
 
-    logout.addEventListener('click', ()=>{
+    logout.addEventListener('click', function() {
         let usersArray = JSON.parse(window.localStorage.users);
         for (let i = 0; i<usersArray.length; i++){
             if(usersArray[i].loggedIn == true) {

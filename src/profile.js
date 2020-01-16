@@ -2,21 +2,26 @@ export default function profile() {
     let tasks_button = document.getElementById('tasks_button');
     let tasks = JSON.parse(window.localStorage.tasks);
     let users = JSON.parse(window.localStorage.users);
-    
+
+
   let user;
   let userSentMessages;
+  let userInboxMessages;
   for (let i = 0; i < users.length; i++){
     if (users[i].loggedIn == true){
     user = users[i];
     userSentMessages = users[i].messages.sentMessages;
+    userInboxMessages = users[i].messages.inboxMessages;
   } 
     
   }
+  
   
 
     tasks_button.addEventListener('click', ()=> {
         showElement()
         document.getElementById('tasks_wrapper').style.display = 'block';
+        showTasks();
     })
 
   
@@ -177,8 +182,11 @@ export default function profile() {
     const taskName = document.createElement('span');
     const deleteBtn = document.createElement('span');
     const ul = document.createElement('ul');
+    let selected = Array.from(select_task.options)
+    .filter(option => option.selected)
+    .map(option => option.value);
 
-    if (value){
+    if (value && selected.length > 0){
       let task = {}
       task.name = value;
       task.subTasks = [];
@@ -189,13 +197,11 @@ export default function profile() {
       deleteBtn.textContent = 'delete';
     
     
-    let selected = Array.from(select_task.options)
-    .filter(option => option.selected)
-    .map(option => option.value);
+    
 
     selected.forEach(option => {
       task.contributors.push(option);
-      contributors.textContent += option + ''; //`
+      contributors.textContent += `${option} `;
     });
       
       
@@ -264,7 +270,10 @@ export default function profile() {
 
 
 // MESSAGES MESSAGES MESSAGES MESSAGES MESSAGES MESSAGES MESSAGES MESSAGES
-const message_list = document.querySelector('#message-list ul');
+const messages_sent = document.getElementById('message-list_sent');
+const messages_inbox = document.getElementById('message-list_inbox');
+const message_list_sent = document.querySelector('#message-list_sent ul');
+const message_list_inbox = document.querySelector('#message-list_inbox ul');
 const select_message = document.getElementById('select_message');
 
 
@@ -281,30 +290,40 @@ let messages_button = document.getElementById('messages_button');
   messages_button.addEventListener('click', ()=> {
         showElement()
         document.getElementById('messages_wrapper').style.display = 'block';
+        
     })
 
-  
+    showMessages(userSentMessages, message_list_sent);
+    showMessages(userInboxMessages, message_list_inbox)
 
 
 
     
 
 // delete message
-message_list.addEventListener('click', (e) => {
-  const li = e.target.parentElement;
+message_list_sent.addEventListener('click', (e) => {
+ del(userSentMessages, e);
+  });
+
+message_list_inbox.addEventListener('click', (e) => {
+    del(userInboxMessages, e);
+     });
+
+  function del (userMessages, e) {
     if(e.target.className == 'delete'){
-      
+      const li = e.target.parentElement;
       const ul = li.parentElement;
       const index = Array.from(ul.children).indexOf(li);
       li.parentNode.removeChild(li); 
-      userSentMessages.splice(index, 1);
+      userMessages.splice(index, 1);
       window.localStorage.users = JSON.stringify(users);
     } else if (e.target.className == 'message unseen') {
+      const li = e.target.parentElement;
       const index = Array.from(li.children).indexOf(e.target)
       e.target.classList.remove('unseen');
       e.target.classList.add('seen');
       
-      userSentMessages[index].status = 'seen';
+      userMessages[index].status = 'seen';
       e.target.childNodes[1].classList.toggle('sub_task_invis');
       e.target.lastChild.classList.toggle('sub_task_invis');
       window.localStorage.users = JSON.stringify(users);
@@ -313,9 +332,7 @@ message_list.addEventListener('click', (e) => {
       e.target.lastChild.classList.toggle('sub_task_invis')
       e.target.childNodes[1].classList.toggle('sub_task_invis');
     }
-  });
-
-
+  }
   // add tasks
   const addForm_message = forms['add-message'];
   const addMessage = document.getElementById('add_message_button');
@@ -334,10 +351,21 @@ message_list.addEventListener('click', (e) => {
     const li = document.createElement('li');
     const contributors = document.createElement('p');
     contributors.textContent = 'To: ';
+    
     const subjectName = document.createElement('span');
     const para = document.createElement('p');
     let message = document.getElementById('message_text').value;
     const messageName = document.createElement('span');
+    const date = document.createElement('span');
+    let options = {
+      month: 'short',
+      day: 'numeric',
+      timezone: 'UTC',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: false
+    };
+    const dateTime = new Date().toLocaleString("en-US", options).toString();
     const deleteBtn = document.createElement('span');
     let message_body = document.createElement('div');
     let selected = Array.from(select_message.options)
@@ -348,9 +376,11 @@ message_list.addEventListener('click', (e) => {
       let tempMessage = {};
       tempMessage.contributors = [];
       tempMessage.status = 'unseen';
+      tempMessage.fromWhom = user.name;
+      tempMessage.date = dateTime;
       // add text content
       if(subject){
-        subjectName.textContent ='Subject:' + subject;}//`
+        subjectName.textContent =`Subject: ${subject}`;}
       else if (!subject){
         subjectName.textContent = '(no subject)';
       }
@@ -358,19 +388,27 @@ message_list.addEventListener('click', (e) => {
       tempMessage.message = message;
       para.textContent = message;
       messageName.textContent = message;
+      date.textContent = dateTime;
       deleteBtn.textContent = 'delete';
       
     
-
+      
     selected.forEach(option => {
+      
+      for (let i = 0; i < users.length; i++){
+        if (users[i].name == option){
+          users[i].messages.inboxMessages.push(tempMessage);
+        }
+      }
       tempMessage.contributors.push(option);
-      contributors.textContent += 'option';//`
+      contributors.textContent += `${option} `;
     });
       
       
       // add classes
       deleteBtn.classList.add('delete');
-      li.classList.add('message', 'unseen');
+      li.classList.add('message');
+      li.classList.add('unseen');
       message_body.classList.add('sub_task_invis');
   
       // append to DOM
@@ -379,16 +417,18 @@ message_list.addEventListener('click', (e) => {
       
       li.appendChild(subjectName);
       li.appendChild(messageName);
+      li.appendChild(date);
       li.appendChild(deleteBtn); 
       message_body.appendChild(contributors)
       message_body.appendChild(para)
       li.appendChild(message_body)   
-      message_list.appendChild(li);
+      message_list_sent.appendChild(li);
       
       
       document.getElementById('message_text').value = '';
       document.getElementById('message_subject').value = '';
 
+    
 
       user.messages.sentMessages.push(tempMessage);
       window.localStorage.users = JSON.stringify(users);
@@ -398,72 +438,113 @@ message_list.addEventListener('click', (e) => {
     
   });
 
-  function showMessages() {
 
-    for (let i = 0; i < users.length; i++){
-      if (users[i].loggedIn == false && users.length <= 23){
-      let option = document.createElement('option');
-      option.innerText = users[i].name;
-      select_message.appendChild(option);
-      select_message.setAttribute('size', users.length - 1);
-    } else if (users[i].loggedIn == false && users.length > 22){
-      let option = document.createElement('option');
-      option.innerText = users[i].name;
-      select_message.appendChild(option);
-      select_message.setAttribute('size', '22');
-    }
+
+  let sentButton = document.getElementById('sent_message_button');
+  let inboxButon = document.getElementById('inbox_message_button');
+
+  sentButton.addEventListener('click', () => {
+    
+    messages_inbox.className = 'sub_task_invis';
+    messages_sent.className = '';
+    event.preventDefault();
+    })
+
+    inboxButon.addEventListener('click', () => {
+    
+      messages_sent.className = 'sub_task_invis';
+      messages_inbox.className = '';
+      event.preventDefault();
+      })
+
+      for (let i = 0; i < users.length; i++){
+        if (users[i].loggedIn == false && users.length <= 23){
+        let option = document.createElement('option');
+        option.innerText = users[i].name;
+        select_message.appendChild(option);
+        select_message.setAttribute('size', users.length - 1);
+      } else if (users[i].loggedIn == false && users.length > 22){
+        let option = document.createElement('option');
+        option.innerText = users[i].name;
+        select_message.appendChild(option);
+        select_message.setAttribute('size', '22');
+      }
+        
+      }  
+
       
-    }     
+
+  function showMessages(userMessages, inbox_or_sent) {
+
+       
 
     
+  if (userMessages) {
+    for (let i = 0; i < userMessages.length; i++){
+      
+  let fromWhom;
+
   
-    for (let i = 0; i < userSentMessages.length; i++){
-        
-        // create elements
-    let subject = userSentMessages[i].subject;
-    const li = document.createElement('li');
-    const contributors = document.createElement('p');
-    contributors.textContent = 'To: ';
-    const subjectName = document.createElement('span');
-    const para = document.createElement('p');
-    let message = userSentMessages[i].message;
-    const messageName = document.createElement('span');
-    const deleteBtn = document.createElement('span');
-    let message_body = document.createElement('div');
+  if(userMessages[i].fromWhom !== user.name){
+    fromWhom = document.createElement('p');
+    fromWhom.textContent = `From: ${userMessages[i].fromWhom}`;
+
+  }
+      // create elements
+  let subject = userMessages[i].subject;
+  const li = document.createElement('li');
+  const contributors = document.createElement('p');
+  contributors.textContent = 'To: ';
+  const subjectName = document.createElement('span');
+  const para = document.createElement('p');
+  let message = userMessages[i].message;
+  const messageName = document.createElement('span');
+  const deleteBtn = document.createElement('span');
+  let message_body = document.createElement('div');
+  const date = document.createElement('span');
 
 // add text content
-    if(subject){
-      subjectName.textContent ='Subject:' + subject;}//`
-    else if (!subject){
-      subjectName.textContent = '(no subject)';
-    }
+  if(subject){
+    subjectName.textContent =`Subject: ${subject}`;}
+  else if (!subject){
+    subjectName.textContent = '(no subject)';
+  }
 
-    para.textContent = message;
-    messageName.textContent = message;
-    deleteBtn.textContent = 'delete';
+  para.textContent = message;
+  messageName.textContent = message;
+  deleteBtn.textContent = 'delete';
+  date.textContent = userMessages[i].date;
+
+
+
+userMessages[i].contributors.forEach(option => {
+  contributors.textContent += `${option} `;
+});
+
+    // add classes
+    deleteBtn.classList.add('delete');
+    li.classList.add('message');
+    li.classList.add(userMessages[i].status);
+    message_body.classList.add('sub_task_invis');
+
+// append to DOM
+  li.appendChild(subjectName);
+  li.appendChild(messageName);
+  li.appendChild(date);
+  li.appendChild(deleteBtn); 
+  if(fromWhom){
+    message_body.appendChild(fromWhom)
+  }
+  message_body.appendChild(contributors)
+  message_body.appendChild(para)
+  li.appendChild(message_body)   
+  inbox_or_sent.appendChild(li);
     
-  
-
-  userSentMessages[i].contributors.forEach(option => {
-    contributors.textContent += option; //`
-  });
-
-      // add classes
-      deleteBtn.classList.add('delete');
-      li.classList.add('message', userSentMessages[i].status);
-      message_body.classList.add('sub_task_invis');
-
- // append to DOM
-    li.appendChild(subjectName);
-    li.appendChild(messageName);
-    li.appendChild(deleteBtn); 
-    message_body.appendChild(contributors)
-    message_body.appendChild(para)
-    li.appendChild(message_body)   
-    message_list.appendChild(li);
-      
-      
-    }
+    
+  }
+    
+  }
+    
 
       
     
@@ -478,6 +559,6 @@ message_list.addEventListener('click', (e) => {
     
 } 
 
-    showTasks();
-    showMessages()
+    
+    
 }

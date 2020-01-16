@@ -17,7 +17,7 @@
 
         
         
-        login.addEventListener('click', () => {
+        login.addEventListener('click', function() {
             showElement()
             sign_up_form.style.display = 'none';
             sign_in_page.style.display = 'flex';
@@ -26,7 +26,7 @@
         })
         
         
-        sign_in.addEventListener('click', () => {
+        sign_in.addEventListener('click', function() {
         if (userName_SignIn.value == '' || password_SignIn.value == '') {
             addAlertMessageSignIn('Please Fill in both forms')
             clearInput()
