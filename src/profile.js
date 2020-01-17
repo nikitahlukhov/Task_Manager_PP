@@ -1,8 +1,8 @@
 export default function profile() {
     let tasks_button = document.getElementById('tasks_button');
-    let tasks = JSON.parse(window.localStorage.tasks);
+    let tasks;
     let users = JSON.parse(window.localStorage.users);
-
+    let profileName = document.getElementById('nav_profile');
 
   let user;
   let userSentMessages;
@@ -10,22 +10,29 @@ export default function profile() {
   for (let i = 0; i < users.length; i++){
     if (users[i].loggedIn == true){
     user = users[i];
+    profileName.childNodes[0].textContent = user.name;
     userSentMessages = users[i].messages.sentMessages;
     userInboxMessages = users[i].messages.inboxMessages;
   } 
     
   }
+
+  if (user.name == 'admin'){
+tasks = JSON.parse(window.localStorage.tasks);
+  } else if (user.name !== 'admin') {
+    tasks = user.tasks;
+  }
   
   
 
     tasks_button.addEventListener('click', ()=> {
-        showElement()
+        showElement('main')
         document.getElementById('tasks_wrapper').style.display = 'block';
-        showTasks();
+        
     })
 
   
-
+    
 
 
   const list = document.querySelector('#task-list ul');
@@ -33,6 +40,7 @@ export default function profile() {
   const select_task = document.getElementById('select_task');
 
 
+  showTasks();
 
   function showTasks() {
 
@@ -63,9 +71,14 @@ export default function profile() {
         const contributors = document.createElement('li');
         const ul = document.createElement('ul');
 
+          if (user.name !== 'admin') {
+            showElement('#tasks_wrapper header .page-banner');
+            forms['search-tasks'].style.display = 'block';
+
+          }
 
         tasks[i].contributors.forEach(e => {
-          contributors.textContent += e
+          contributors.textContent += `${e} `;
         })
         // add text content
         taskName.textContent = value;
@@ -198,8 +211,16 @@ export default function profile() {
     
     
     
+      
 
     selected.forEach(option => {
+
+      for (let i = 0; i < users.length; i++){
+        if (users[i].name == option){
+          users[i].tasks.push(task);
+        }
+      }
+
       task.contributors.push(option);
       contributors.textContent += `${option} `;
     });
@@ -247,6 +268,7 @@ export default function profile() {
       
       tasks.push(task);
       window.localStorage.tasks = JSON.stringify(tasks);
+      window.localStorage.users = JSON.stringify(users);
     }
     
   });
@@ -256,15 +278,16 @@ export default function profile() {
   const searchBar = forms['search-tasks'].querySelector('input');
   searchBar.addEventListener('keyup', (e) => {
     const term = e.target.value.toLowerCase();
-    const tasks = list.getElementsByTagName('li');
-    Array.from(tasks).forEach((task) => {
-      const title = task.firstElementChild.textContent;
+    const tasks = Array.from(list.getElementsByTagName('li'));
+    for (let i = 0; i < tasks.length - 1; i++) {
+      const title = tasks[i].firstElementChild.textContent;
+      
       if(title.toLowerCase().indexOf(e.target.value) != -1){
-        task.style.display = 'block';
+        tasks[i].style.display = 'block';
       } else {
-        task.style.display = 'none';
+        tasks[i].style.display = 'none';
       }
-    });
+    }
   });
 
 
@@ -288,13 +311,14 @@ let messages_button = document.getElementById('messages_button');
 
 
   messages_button.addEventListener('click', ()=> {
-        showElement()
+        showElement('main')
         document.getElementById('messages_wrapper').style.display = 'block';
         
     })
 
     showMessages(userSentMessages, message_list_sent);
-    showMessages(userInboxMessages, message_list_inbox)
+    showMessages(userInboxMessages, message_list_inbox);
+    
 
 
 
@@ -320,10 +344,14 @@ message_list_inbox.addEventListener('click', (e) => {
     } else if (e.target.className == 'message unseen') {
       const li = e.target.parentElement;
       const index = Array.from(li.children).indexOf(e.target)
-      e.target.classList.remove('unseen');
-      e.target.classList.add('seen');
       
-      userMessages[index].status = 'seen';
+      console.log(li.parentElement.getAttribute('id') == 'message-list_inbox')
+      if (li.parentElement.getAttribute('id') == 'message-list_inbox'){
+        e.target.classList.remove('unseen');
+        e.target.classList.add('seen');
+        userMessages[index].status = 'seen';
+      }
+      
       e.target.childNodes[1].classList.toggle('sub_task_invis');
       e.target.lastChild.classList.toggle('sub_task_invis');
       window.localStorage.users = JSON.stringify(users);
@@ -471,8 +499,61 @@ message_list_inbox.addEventListener('click', (e) => {
       }
         
       }  
+// filter messages
+const searchBarMessages = forms['search-messages'].querySelector('input');
+searchBarMessages.addEventListener('keyup', (e) => {
+  const term = e.target.value.toLowerCase();
+  
+  let messages = Array.from(message_list_sent.getElementsByTagName('li'));
+  const messages_inbox = Array.from(message_list_inbox.getElementsByTagName('li'));
+  messages = messages.concat(messages_inbox)
+  messages.forEach((message) => {
+    const title = message.firstElementChild.textContent.slice(9);
+    const body = message.childNodes[1].textContent;
 
-      
+    if(title.toLowerCase().indexOf(e.target.value) != -1 ||
+    body.toLowerCase().indexOf(e.target.value) != -1){
+      message.style.display = 'block';
+    } else {
+      message.style.display = 'none';
+    }
+  });
+});
+
+  
+  const unseenCheckBox = document.getElementById('unseen');
+  const seenCheckBox = document.getElementById('seen');
+  
+  unseenCheckBox.addEventListener('click', () => {
+    let messages = Array.from(message_list_inbox.getElementsByTagName('li'));
+    if (unseenCheckBox.checked){
+      messages.forEach((message) => {
+        if (message.className == 'message unseen'){
+        message.style.display = 'block';}
+      });
+    } else if (!unseenCheckBox.checked) {
+      messages.forEach((message) => {
+        if (message.className == 'message unseen'){
+          message.style.display = 'none';}
+      });
+    }
+  })
+
+  seenCheckBox.addEventListener('click', () => {
+    let messages = Array.from(message_list_inbox.getElementsByTagName('li'));
+    if (seenCheckBox.checked){
+      messages.forEach((message) => {
+        if (message.className == 'message seen'){
+        message.style.display = 'block';}
+      });
+    } else if (!seenCheckBox.checked) {
+      messages.forEach((message) => {
+        if (message.className == 'message seen'){
+          message.style.display = 'none';}
+      });
+    }
+  })
+ 
 
   function showMessages(userMessages, inbox_or_sent) {
 
@@ -551,8 +632,8 @@ userMessages[i].contributors.forEach(option => {
   }
 
 
-  function showElement(){
-    let arr = document.querySelectorAll('main > *');
+  function showElement(section){
+    let arr = document.querySelectorAll(section + ' > *');
     for (let i=0; i<arr.length; i++){
         arr[i].style.display = 'none'; 
     }

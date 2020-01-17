@@ -139,14 +139,14 @@
                 
               </form>
             </div>
-            <div >
+            
               
                 <select id="select_task" multiple>
                 </select>
                 
               
               
-            </div>
+            
             
             <form id="search-tasks">
               <input type="text" placeholder="Search tasks..." />
@@ -195,12 +195,15 @@
         </header>
         <button id="sent_message_button">Sent</button>
         <button id="inbox_message_button" >Inbox</button>
+        
         <div id="message-list_sent" >
           <h2 class="title">sent messages</h2>
           <ul>
           </ul>
         </div>
         <div id="message-list_inbox" class="sub_task_invis">
+          <input type="checkbox" id="unseen" checked><label for="unseen">unseen</label>
+          <input type="checkbox" id="seen" checked><label for="seen">seen</label>
           <h2 class="title">inbox</h2>
           <ul>
           </ul>
