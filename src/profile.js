@@ -1,27 +1,30 @@
 export default function profile() {
     let tasks_button = document.getElementById('tasks_button');
-    let tasks;
+    let tasks = JSON.parse(window.localStorage.tasks);
     let users = JSON.parse(window.localStorage.users);
     let profileName = document.getElementById('nav_profile');
 
   let user;
   let userSentMessages;
   let userInboxMessages;
-  for (let i = 0; i < users.length; i++){
-    if (users[i].loggedIn == true){
-    user = users[i];
-    profileName.childNodes[0].textContent = user.name;
-    userSentMessages = users[i].messages.sentMessages;
-    userInboxMessages = users[i].messages.inboxMessages;
-  } 
-    
-  }
 
-  if (user.name == 'admin'){
-tasks = JSON.parse(window.localStorage.tasks);
-  } else if (user.name !== 'admin') {
-    tasks = user.tasks;
+  
+  if(users){
+    for (let i = 0; i < users.length; i++){
+      if (users[i].loggedIn == true){
+      user = users[i];
+      profileName.childNodes[0].textContent = user.name;
+      userSentMessages = users[i].messages.sentMessages;
+      userInboxMessages = users[i].messages.inboxMessages;
+    } 
+      
+    }
+    
+
   }
+  
+
+  
   
   
 
@@ -40,7 +43,11 @@ tasks = JSON.parse(window.localStorage.tasks);
   const select_task = document.getElementById('select_task');
 
 
+  
+
   showTasks();
+
+  
 
   function showTasks() {
 
@@ -67,40 +74,69 @@ tasks = JSON.parse(window.localStorage.tasks);
         const value = tasks[i].name;
         const li = document.createElement('li');
         const taskName = document.createElement('span');
+        const taskProgress = document.createElement('span');
+        taskProgress.style.color = 'red';
         const deleteBtn = document.createElement('span');
+        const indexValue = tasks.indexOf(tasks[i]);
+        li.setAttribute('value', indexValue);
         const contributors = document.createElement('li');
         const ul = document.createElement('ul');
+        let checkbox = document.createElement('input');
+        checkbox.setAttribute('type', 'checkbox');
+        checkbox.classList.add('check');
+        checkbox.checked = tasks[i].checked;
 
-          if (user.name !== 'admin') {
-            showElement('#tasks_wrapper header .page-banner');
-            forms['search-tasks'].style.display = 'block';
-
-          }
+          
 
         tasks[i].contributors.forEach(e => {
           contributors.textContent += `${e} `;
         })
+
+
+        if (user.name != 'admin')
+        {for (let f = 0; f < tasks[i].contributors.length; f++){
+          if (tasks[i].contributors[f] == user.name){
+            break;
+          }
+          li.classList.add('invis_task');
+        }}
+        
         // add text content
         taskName.textContent = value;
+        taskProgress.textContent = tasks[i].progress + '%';
         deleteBtn.textContent = 'delete';
 
         // add classes
         taskName.classList.add('name');
         deleteBtn.classList.add('delete');
         li.classList.add('task');
+        li.classList.add(tasks[i].status);
         ul.classList.add('sub_task_invis');
+        checkbox.setAttribute('value', '100');
+        checkbox.classList.add('doneTask')
 
         if (tasks[i].subTasks.length > 0){
+          let value = (100 / tasks[i].subTasks.length).toFixed();
+         
           for (let f = 0; f < tasks[i].subTasks.length; f++){
-            
+              
               let li = document.createElement('li');
+              let checkbox = document.createElement('input');
+              checkbox.setAttribute('type', 'checkbox');
+              checkbox.setAttribute('value', value);
+              
               const taskName = document.createElement('span');
               const deleteBtn = document.createElement('span');
-              taskName.textContent = tasks[i].subTasks[f];
+              taskName.textContent = tasks[i].subTasks[f].name;
+              checkbox.checked = tasks[i].subTasks[f].checked;
+              checkbox.classList.add('check');
+              checkbox.classList.add('addValue');
+              li.classList.add(tasks[i].subTasks[f].status);
               deleteBtn.textContent = 'delete';
               taskName.classList.add('name');
               deleteBtn.classList.add('delete');
               li.appendChild(taskName);
+              li.appendChild(checkbox);
               li.appendChild(deleteBtn);
               ul.appendChild(li);
             
@@ -109,7 +145,10 @@ tasks = JSON.parse(window.localStorage.tasks);
         
 
         // append to DOM
+        
         li.appendChild(taskName);
+        li.appendChild(checkbox);
+        li.appendChild(taskProgress);
         li.appendChild(deleteBtn);       
         list.appendChild(li)
         li.appendChild(ul);
@@ -117,7 +156,21 @@ tasks = JSON.parse(window.localStorage.tasks);
           ul.appendChild(contributors);
         }
       
-      
+        if (user.name !== 'admin') {
+          showElement('#tasks_wrapper header .page-banner');
+          forms['search-tasks'].style.display = 'block';
+          let a = document.querySelectorAll('.check');
+          let b = document.querySelectorAll('.delete');
+
+          b.forEach(e => {
+            e.style.display = 'none';
+          })
+          
+          a.forEach(e => {
+            e.classList.remove('check')
+          })
+
+        }
     }
 
       
@@ -128,10 +181,10 @@ tasks = JSON.parse(window.localStorage.tasks);
     if(e.target.className == 'delete'){
       const li = e.target.parentElement;
       const ul = li.parentElement;
-      const index = Array.from(ul.children).indexOf(li);
-      if (li.className == 'task'){
+      const index = li.getAttribute('value');
+      if (li.className == 'task undone' || li.className == 'task done'){
         tasks.splice(index, 1);
-      } else if (li.className != 'task'){
+      } else if (li.className != 'task undone' || li.className != 'task done'){
         const li = e.target.parentElement.parentElement.parentElement;
         const ul = li.parentElement;
         const index = Array.from(ul.children).indexOf(li);
@@ -143,14 +196,128 @@ tasks = JSON.parse(window.localStorage.tasks);
       
       li.parentNode.removeChild(li);
       window.localStorage.tasks = JSON.stringify(tasks);
-    } else if (e.target.className == 'task') {
+    } else if (e.target.className == 'task undone' || e.target.className == 'task done') {
       
         e.target.lastChild.classList.toggle('sub_task_invis');
+    
+    } else if (e.target.className == 'addValue'){
       
+      const li = e.target.parentElement.parentElement.parentElement;
+      const ul = li.childNodes[4].childNodes;
+      let prevVal = +(li.childNodes[2].innerText.slice(0, -1));
+      let value = +(e.target.getAttribute('value'));
+      const indexUl = li.getAttribute('value');
+      const index = Array.from(e.target.parentElement.parentElement.children).indexOf(e.target.parentElement);
+      if (e.target.checked){
+        console.log(index)
+        e.target.parentElement.className = 'done';
+        tasks[indexUl].subTasks[index].status = 'done';
+        tasks[indexUl].subTasks[index].checked = true;
+        tasks[indexUl].progress = value;
+        window.localStorage.tasks = JSON.stringify(tasks);
+        let num = 0;
+        for (let i = 0; i < ul.length - 1; i++){
+         
+          if (!ul[i].childNodes[1].checked) {
+            num += 1;
+          }
+          
+        }
+        if (num == 0){
+          li.childNodes[1].checked = true 
+          li.childNodes[2].innerText = '100%';
+          li.className = 'task done'
+          tasks[indexUl].status = 'done';
+          tasks[indexUl].progress = 100;
+          tasks[indexUl].checked = true;
+          window.localStorage.tasks = JSON.stringify(tasks);
+
+        } else {
+          li.childNodes[2].innerText = prevVal +  value + '%';
+          tasks[indexUl].progress = prevVal +  value;
+           window.localStorage.tasks = JSON.stringify(tasks);
+        }
         
+
+        
+      } else if (!e.target.checked) {
+        e.target.parentElement.className = 'undone'
+        tasks[indexUl].subTasks[index].status = 'undone';
+        tasks[indexUl].subTasks[index].checked = false;
+        tasks[indexUl].progress = prevVal - value;
+        window.localStorage.tasks = JSON.stringify(tasks);
+        let num = 0;
+        for (let i = 0; i < ul.length - 1; i++){
+         
+          if (ul[i].childNodes[1].checked) {
+            num += 1;
+          }
+          
+        }
+        if (num == 0){
+          
+          li.childNodes[2].innerText = '0%';
+          li.className = 'task undone'
+          tasks[indexUl].status = 'undone';
+          tasks[indexUl].checked = false;
+          tasks[indexUl].progress = 0;
+          window.localStorage.tasks = JSON.stringify(tasks);
+        } else {
+          li.childNodes[1].checked = false;
+          tasks[indexUl].checked = false;
+          window.localStorage.tasks = JSON.stringify(tasks);
+        li.childNodes[2].innerText = prevVal -  value + '%';
+        }
+        
+        
+      }
       
       
+    } else if (e.target.className == 'doneTask'){
       
+      const li = e.target.parentElement;
+      const index = li.getAttribute('value');
+      if(e.target.checked){
+        let ul = li.childNodes[4].childNodes;
+        for (let i = 0; i < ul.length - 1; i++){
+          ul[i].childNodes[1].checked = true;
+          ul[i].childNodes[1].parentElement.className = 'done';
+          
+        }
+        tasks[index].subTasks.forEach(e => (
+          e.checked = true,
+          e.status = 'done'
+        ))    
+        li.className = 'task done'
+        li.childNodes[2].innerText = '100%';
+        li.className = 'task done'
+        tasks[index].progress = 100;
+        tasks[index].status = 'done';
+        tasks[index].progress = 100;
+        tasks[index].checked = true;
+        window.localStorage.tasks = JSON.stringify(tasks);
+        
+      } else if (!e.target.checked) {
+        let ul = li.childNodes[4].childNodes;
+        for (let i = 0; i < ul.length - 1; i++){
+          ul[i].childNodes[1].checked = false;
+          ul[i].childNodes[1].parentElement.className = 'undone'
+        }
+        tasks[index].subTasks.forEach(e => (
+          
+          e.status = 'undone',
+          e.checked = false 
+        )) 
+        
+        li.className = 'task undone'
+        li.childNodes[2].innerText = '0%';
+        tasks[index].progress = 0;
+        tasks[index].status = 'undone';
+        tasks[index].checked = false;
+        tasks[index].progress = 0;
+        window.localStorage.tasks = JSON.stringify(tasks);
+        
+      }
     }
   });
 
@@ -193,6 +360,8 @@ tasks = JSON.parse(window.localStorage.tasks);
     const li = document.createElement('li');
     const contributors = document.createElement('li');
     const taskName = document.createElement('span');
+    const taskProgress = document.createElement('span');
+    taskProgress.style.color = 'red';
     const deleteBtn = document.createElement('span');
     const ul = document.createElement('ul');
     let selected = Array.from(select_task.options)
@@ -202,11 +371,15 @@ tasks = JSON.parse(window.localStorage.tasks);
     if (value && selected.length > 0){
       let task = {}
       task.name = value;
+      task.progress = 0;
       task.subTasks = [];
       task.contributors =[];
+      task.status = 'undone';
+      task.checked = false;
 
       // add text content
       taskName.textContent = value;
+      taskProgress.textContent = 0 + '%';
       deleteBtn.textContent = 'delete';
     
     
@@ -215,11 +388,7 @@ tasks = JSON.parse(window.localStorage.tasks);
 
     selected.forEach(option => {
 
-      for (let i = 0; i < users.length; i++){
-        if (users[i].name == option){
-          users[i].tasks.push(task);
-        }
-      }
+      
 
       task.contributors.push(option);
       contributors.textContent += `${option} `;
@@ -229,6 +398,7 @@ tasks = JSON.parse(window.localStorage.tasks);
       // add classes
       deleteBtn.classList.add('delete');
       li.classList.add('task');
+      li.classList.add('undone');
       ul.classList.add('sub_task_invis');
   
       // append to DOM
@@ -236,7 +406,11 @@ tasks = JSON.parse(window.localStorage.tasks);
 
       for (let i = 1; i < subValue.length; i++){
         if(subValue[i].value){
-          task.subTasks.push(subValue[i].value);
+          let tempSubtask = {};
+          tempSubtask.name = subValue[i].value;
+          tempSubtask.status = 'undone';
+          tempSubtask.checked = false;
+          task.subTasks.push(tempSubtask);
           let li = document.createElement('li');
           const taskName = document.createElement('span');
           const deleteBtn = document.createElement('span');
@@ -246,11 +420,13 @@ tasks = JSON.parse(window.localStorage.tasks);
           deleteBtn.classList.add('delete');
           li.appendChild(taskName);
           li.appendChild(deleteBtn);
+          li.classList.add('undone');
           ul.appendChild(li);
         }
       }
       
       li.appendChild(taskName);
+      li.appendChild(taskProgress);
       li.appendChild(deleteBtn);      
       list.appendChild(li);
       li.appendChild(ul);
@@ -268,7 +444,6 @@ tasks = JSON.parse(window.localStorage.tasks);
       
       tasks.push(task);
       window.localStorage.tasks = JSON.stringify(tasks);
-      window.localStorage.users = JSON.stringify(users);
     }
     
   });

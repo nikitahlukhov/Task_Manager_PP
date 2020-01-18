@@ -47,7 +47,6 @@ if (!window.localStorage.users){
             sentMessages: [],
             inboxMessages: [],
         },
-        tasks: [],
     },
     {
         name: "nikita",
@@ -58,7 +57,6 @@ if (!window.localStorage.users){
             sentMessages: [],
             inboxMessages: [],
         },
-        tasks: [],
     },
     {
         name: "vova",
@@ -69,7 +67,6 @@ if (!window.localStorage.users){
             sentMessages: [],
             inboxMessages: [],
         },
-        tasks: [],
     },
 ];
         window.localStorage.users = JSON.stringify(registeredUsers);

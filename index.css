@@ -278,11 +278,15 @@ nav li:hover{
   border-color: #9361bf;
 }
 
-#message-list_sent li.unseen,  #message-list_inbox li.unseen{
+
+
+#message-list_sent li.unseen,  #message-list_inbox li.unseen,
+#task-list li.undone{
   border-color: red;
 }
 
-#message-list_sent li.seen, #message-list_inbox li.seen {
+#message-list_sent li.seen, #message-list_inbox li.seen,
+#task-list li.done {
   border-color: green;
 }
 
@@ -423,9 +427,16 @@ line-height: 52px;
 }
 
 
-.sub_task_invis {
+
+.check, .sub_task_invis {
   display: none;
 }
+.invis_task {
+  display: none;
+}
+
+
+
 
 #share_link_container {
   display: none;
