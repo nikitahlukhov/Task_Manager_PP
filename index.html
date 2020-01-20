@@ -1,27 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta http-equiv='X-UA-Compatible' content='IE=11' />
-    
+    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    
+
     <link rel="stylesheet" href="index.css" />
     <title>Task Management 3000</title>
-    
   </head>
 
   <body>
-    
-
-
     <header>
       <nav id="logged_out">
         <ul>
           <li class="home_button">Home</li>
-          <li>Tasks</li>
-          <li>Employees</li>
           <li class="contacts_nav">Contacts</li>
           <li id="sign_in">Sign In/ Sign Up</li>
         </ul>
@@ -29,9 +22,9 @@
       <nav id="logged_in">
         <ul>
           <li class="home_button">Home</li>
-          <li id="nav_profile">Profile
+          <li id="nav_profile">
+            Profile
             <ul id="nav_profile_ul">
-              <li>Employees</li>
               <li id="tasks_button">Tasks</li>
               <li id="messages_button">Messages</li>
             </ul>
@@ -40,7 +33,6 @@
           <li id="logout">logout</li>
         </ul>
       </nav>
-      
     </header>
     <main>
       <div class="carousel-wrapper">
@@ -71,7 +63,12 @@
         <div class="sign_in_wrapper">
           <form action="">
             <p>Sign in or Sign up</p>
-            <input type="text" placeholder="Login" id="sign_in_login" value="admin"/>
+            <input
+              type="text"
+              placeholder="Login"
+              id="sign_in_login"
+              value="admin"
+            />
             <input
               type="password"
               placeholder="Password"
@@ -100,7 +97,12 @@
         <div id="map">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2540.4379024754016!2d30.53159721586767!3d50.45156979516515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ce4dbddcb8e9%3A0xf40459662f740935!2sHangover!5e0!3m2!1sru!2sua!4v1579176815217!5m2!1sru!2sua"
-            width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+            width="600"
+            height="450"
+            frameborder="0"
+            style="border:0;"
+            allowfullscreen=""
+          ></iframe>
         </div>
         <div id="map_info">
           <p><strong>Adress:</strong>Abdc, Kyiv</p>
@@ -128,41 +130,40 @@
                 <input type="text" placeholder="Add a task..." />
                 <button id="add_task_button">Add</button>
                 <button id="add_subtask_button">Add subtask</button>
-                <input type="text" placeholder="Add a subtask..." />
+                <input
+                  type="text"
+                  placeholder="Add a subtask..."
+                  class="subtask"
+                />
                 <button class="delete_subtask">delete</button>
-                <input type="text" placeholder="Add a subtask..." />
+                <input
+                  type="text"
+                  placeholder="Add a subtask..."
+                  class="subtask"
+                />
                 <button class="delete_subtask">delete</button>
-                <input type="text" placeholder="Add a subtask..." />
+                <input
+                  type="text"
+                  placeholder="Add a subtask..."
+                  class="subtask"
+                />
                 <button class="delete_subtask">delete</button>
-                
-                
-                
               </form>
             </div>
-            
-              
-                <select id="select_task" multiple>
-                </select>
-                
-              
-              
-            
-            
+
+            <select id="select_task" multiple> </select>
+
             <form id="search-tasks">
               <input type="text" placeholder="Search tasks..." />
             </form>
           </div>
-          
         </header>
         <div id="task-list">
           <h2 class="title">tasks</h2>
-          <ul>
-          </ul>
+          <ul></ul>
         </div>
-        
-        
       </div>
-      
+
       <div id="messages_wrapper">
         <header>
           <div class="page-banner">
@@ -171,70 +172,63 @@
               <form id="add-message">
                 <input id="message_subject" type="text" placeholder="Subject" />
                 <button id="add_message_button">send</button>
-                <textarea id="message_text" type="text" placeholder="Your message..." style="resize: none;"></textarea>
-                
-                
-                
-                
+                <textarea
+                  id="message_text"
+                  type="text"
+                  placeholder="Your message..."
+                  style="resize: none;"
+                ></textarea>
               </form>
             </div>
-            <div >
-              
-                <select id="select_message" multiple>
-                </select>
-                
-              
-              
+            <div>
+              <select id="select_message" multiple> </select>
             </div>
-            
+
             <form id="search-messages">
               <input type="text" placeholder="Search messages..." />
             </form>
           </div>
-          
         </header>
         <button id="sent_message_button">Sent</button>
-        <button id="inbox_message_button" >Inbox</button>
-        
-        <div id="message-list_sent" >
+        <button id="inbox_message_button">Inbox</button>
+
+        <div id="message-list_sent">
           <h2 class="title">sent messages</h2>
-          <ul>
-          </ul>
+          <ul></ul>
         </div>
         <div id="message-list_inbox" class="sub_task_invis">
-          <input type="checkbox" id="unseen" checked><label for="unseen">unseen</label>
-          <input type="checkbox" id="seen" checked><label for="seen">seen</label>
+          <input type="checkbox" id="unseen" checked /><label for="unseen"
+            >unseen</label
+          >
+          <input type="checkbox" id="seen" checked /><label for="seen"
+            >seen</label
+          >
           <h2 class="title">inbox</h2>
-          <ul>
-          </ul>
+          <ul></ul>
         </div>
-        
-        
-      </div> 
-          
-        
-      
+      </div>
     </main>
     <footer>
       <div id="footer_left">
         <p>&copy; 2019 Task Management 3000, All rights reserved</p>
       </div>
       <div id="footer_right">
-        
-
-          <input type="button" value="Share" id="share_button" />
-          <br />
-          <div id="share_link_container">
-            <span>X</span>
-            <p>Share Link:</p> 
-            <textarea id="urlCopied" rows="1" cols="30" style="resize: none; overflow: hidden; " wrap="off" ></textarea>
-            <button id="share_link_copy">Copy</button>
-          </div>
-         
-      
+        <input type="button" value="Share" id="share_button" />
+        <br />
+        <div id="share_link_container">
+          <span>X</span>
+          <p>Share Link:</p>
+          <textarea
+            id="urlCopied"
+            rows="1"
+            cols="30"
+            style="resize: none; overflow: hidden; "
+            wrap="off"
+          ></textarea>
+          <button id="share_link_copy">Copy</button>
+        </div>
       </div>
     </footer>
     <script src="./src/index.js" type="module"></script>
-
   </body>
 </html>

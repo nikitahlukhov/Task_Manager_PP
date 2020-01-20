@@ -1,1 +1,5 @@
-# EPAM_Task_Manager_PP
+#Task_Manager_PP
+
+
+manager login: admin
+manager pass: admin

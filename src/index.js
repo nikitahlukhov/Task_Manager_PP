@@ -1,14 +1,17 @@
 import login_page from './login.js';
 import contacts_page from './contacts.js';
 import logout from './logout.js';
-import profile from './profile.js'
+import messages from './profile/messages.js'
+import tasks from './profile/tasks.js'
 logout();
 login_page();
 contacts_page();
 
 
 
-let home = document.querySelectorAll('.home_button');
+
+
+const home = document.querySelectorAll('.home_button');
 for (let i = 0; i < home.length; i++) {
     home[i].addEventListener('click', () => {
         let arr = document.querySelectorAll('main > *');
@@ -105,7 +108,9 @@ function isLogged(){
     
 }
 
-profile();
+
+tasks();
+messages();
 
 let shareButton = document.getElementById('share_button');
 let copyLink = document.getElementById('share_link_copy');

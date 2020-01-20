@@ -79,7 +79,6 @@ nav li:hover{
     position:relative;
     width:100%;
     margin:0 auto;
-    display: none;
 
   }
   .carousel-item{
@@ -230,9 +229,7 @@ nav li:hover{
   display: none;
 }
 
-#tasks_wrapper {
-  display: block;
-}
+
 
 .page-banner{
   background: #eee ;
@@ -415,25 +412,23 @@ line-height: 52px;
 }
 
 
-#message-list_sent ul li span:nth-child(2).sub_task_invis,
-#message-list_inbox ul li span:nth-child(2).sub_task_invis {
+#message-list_sent ul li span:nth-child(2).hide_message,
+#message-list_inbox ul li span:nth-child(2).hide_message {
   visibility: hidden;
   
 }
 
-#message-list_inbox.sub_task_invis,
-#message-list_sent.sub_task_invis {
+#message-list_inbox.messages_invis,
+#message-list_sent.messages_invis {
   display: none;
 }
 
 
 
-.check, .sub_task_invis {
+.check, .sub_task_invis, .invis_task, .messages_invis, .hide_message {
   display: none;
 }
-.invis_task {
-  display: none;
-}
+
 
 
 
