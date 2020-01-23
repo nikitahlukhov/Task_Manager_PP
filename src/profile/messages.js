@@ -1,6 +1,5 @@
 export default function messages() {
   const users = JSON.parse(window.localStorage.users);
-  const profileName = document.getElementById('nav_profile');
 
   let user;
   let userSentMessages;
@@ -14,7 +13,7 @@ export default function messages() {
   const inboxMessagesList = document.querySelector('#message-list_inbox ul');
   const selectListMessage = document.getElementById('select_message');
 
-  const messagesButton = document.getElementById('messages_button');
+  const messagesButton = document.querySelectorAll('.messages_button');
   const addMessage = document.getElementById('add_message_button');
 
 //check if users exist
@@ -22,7 +21,6 @@ export default function messages() {
     for (let i = 0; i < users.length; i++) {
       if (users[i].loggedIn == true) {
         user = users[i];
-        profileName.childNodes[0].textContent = user.name;
         userSentMessages = users[i].messages.sentMessages;
         userInboxMessages = users[i].messages.inboxMessages;
         showMessages(userSentMessages, sentMessagesList);
@@ -32,10 +30,13 @@ export default function messages() {
     }
   }
 
-  messagesButton.addEventListener('click', () => {
-    hideElements('main');
+  
+  for (let i = 0; i < messagesButton.length; i++) {
+    messagesButton[i].addEventListener('click', () => {
+         hideElements('main')
     document.getElementById('messages_wrapper').style.display = 'block';
-  });
+    });
+}
 
 //fill select forms
   for (let i = 0; i < users.length; i++) {
@@ -77,7 +78,7 @@ export default function messages() {
 
     const selected = Array.from(selectListMessage.options)
       .filter(option => option.selected)
-      .map(option => option.value);
+      .map(option => option.value.charAt(0).toLowerCase() + option.value.slice(1));
 
     if (messageValue && selected.length > 0) {
       // add text content and create message for localstorage
@@ -247,7 +248,8 @@ export default function messages() {
 
   function fillSelectList(selectList, i) {
     const option = document.createElement('option');
-    option.innerText = users[i].name;
+    const userName = users[i].name.charAt(0).toUpperCase() + users[i].name.slice(1)
+    option.innerText = userName;
     selectList.appendChild(option);
     if (users.length <= 23) {
       selectList.setAttribute('size', users.length - 1);

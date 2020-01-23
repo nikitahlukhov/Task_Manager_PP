@@ -1,11 +1,23 @@
 import login_page from './login.js';
-import contacts_page from './contacts.js';
+import aboutUs from './about_us.js';
 import logout from './logout.js';
 import messages from './profile/messages.js'
 import tasks from './profile/tasks.js'
+import employees from './profile/employees.js'
+import search from './search.js'
+
 logout();
+search();
 login_page();
-contacts_page();
+
+aboutUs();
+
+//foreach for ie11
+if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+}
+
+
 
 
 
@@ -25,15 +37,10 @@ for (let i = 0; i < home.length; i++) {
 
 
 
-
-
-
-
 if (!window.localStorage.users){
     let registeredUsers = [{
         name: "admin",
         password: "admin",
-        email: "admin@gmail.com",
         messages: {
             sentMessages: [],
             inboxMessages: [],
@@ -44,35 +51,38 @@ if (!window.localStorage.users){
     {
         name: "vanya",
         password: "vanya",
-        email: "admin@gmail.com",
+        coreSkill: "JavaScript",
         loggedIn: false,
         messages: {
             sentMessages: [],
             inboxMessages: [],
         },
+        isAdmin: false,
     },
     {
         name: "nikita",
         password: "nikita",
-        email: "admin@gmail.com",
+        coreSkill: "Dota 2",
         loggedIn: false,
         messages: {
             sentMessages: [],
             inboxMessages: [],
         },
+        isAdmin: false,
     },
     {
         name: "vova",
         password: "vova",
-        email: "admin@gmail.com",
+        coreSkill: "Intelligence",
         loggedIn: false,
         messages: {
             sentMessages: [],
             inboxMessages: [],
         },
+        isAdmin: false,
     },
 ];
-        window.localStorage.users = JSON.stringify(registeredUsers);
+    window.localStorage.users = JSON.stringify(registeredUsers);
         
 }
 
@@ -83,15 +93,18 @@ if (!window.localStorage.tasks){
 
 
 
-
 if (isLogged()){
     document.getElementById('logged_out').style.display = 'none'
+    document.getElementById('logged_in').style.display = 'block'
 } else if (!isLogged()){
     document.getElementById('logged_in').style.display = 'none'
+    document.getElementById('logged_out').style.display = 'block'
+     
 }
 
-
-
+messages(); 
+tasks();
+employees()
 
 function isLogged(){
     let usersArray = JSON.parse(window.localStorage.users);
@@ -109,13 +122,12 @@ function isLogged(){
 }
 
 
-tasks();
-messages();
 
-let shareButton = document.getElementById('share_button');
-let copyLink = document.getElementById('share_link_copy');
-let shareBox = document.getElementById('share_link_container');
-let shareBoxClose = shareBox.getElementsByTagName("SPAN")[0];
+
+const shareButton = document.getElementById('share_button');
+const copyLink = document.getElementById('share_link_copy');
+const shareBox = document.getElementById('share_link_container');
+const shareBoxClose = shareBox.getElementsByTagName("SPAN")[0];
 
 shareButton.addEventListener('click', ()=>{
 shareBox.style.display = 'block'
@@ -123,9 +135,9 @@ urlCopied.innerHTML = window.location.href;
 selectText('urlCopied')
 })
 
-function selectText(containerid) {    
+function selectText(containerID) {    
     var range = document.createRange();
-    range.selectNode(document.getElementById(containerid));
+    range.selectNode(document.getElementById(containerID));
     window.getSelection().removeAllRanges();
     window.getSelection().addRange(range);
 

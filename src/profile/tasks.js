@@ -1,11 +1,12 @@
 export default function tasks() {
-    const tasksButton = document.getElementById('tasks_button');
+    const tasksButton = document.querySelectorAll('.tasks_button');
     let tasks = JSON.parse(window.localStorage.tasks);
     const users = JSON.parse(window.localStorage.users);
     const profileName = document.getElementById('nav_profile');
+    const employeesButton = document.querySelector('.employees_button')
 
     let user;
-
+    
     const tasksList = document.querySelector('#task-list ul');
     const forms = document.forms;
     const selectListTask = document.getElementById('select_task');
@@ -14,8 +15,13 @@ export default function tasks() {
     if (users) {
         for (let i = 0; i < users.length; i++) {
             if (users[i].loggedIn == true) {
+                if(users[i].isAdmin){
+                    employeesButton.style.display = 'block'
+                }
                 user = users[i];
-                profileName.childNodes[0].textContent = user.name;
+                profileName.childNodes[0].textContent = user.name.charAt(0).toUpperCase() + user.name.slice(1) ;              
+                hideElements('main')
+                document.getElementById('tasks_wrapper').style.display = 'block';
                 showTasks();
                 break;
             }
@@ -23,16 +29,20 @@ export default function tasks() {
     }
 
     
-    tasksButton.addEventListener('click', () => {
-        hideElements('main')
+    
+
+    for (let i = 0; i < tasksButton.length; i++) {
+        tasksButton[i].addEventListener('click', () => {
+             hideElements('main')
         document.getElementById('tasks_wrapper').style.display = 'block';
-    })
+        });
+    }
 
     //fill select forms
     for (let i = 0; i < users.length; i++) {
-        if (users[i].name != 'admin' && users.length <= 23) {
+        if (!users[i].isAdmin && users.length <= 23) {
             fillSelectList(selectListTask, i)
-        } else if (users[i].name != 'admin' && users.length > 22) {
+        } else if (!users[i].isAdmin && users.length > 22) {
             fillSelectList(selectListTask, i)
         }
     }
@@ -74,7 +84,7 @@ export default function tasks() {
         const ul = document.createElement('ul');
         const selected = Array.from(selectListTask.options)
             .filter(option => option.selected)
-            .map(option => option.value);
+            .map(option => option.value.slice(0, option.value.indexOf('Core Skill:') - 1));
 
         if (taskNameValue && selected.length > 0) {
             // add text content and create task for localstorage
@@ -90,7 +100,7 @@ export default function tasks() {
             deleteButton.textContent = 'delete';
 
             selected.forEach(option => {
-                task.contributors.push(option);
+                task.contributors.push(option.charAt(0).toLowerCase() + option.slice(1));
                 contributorsValue.textContent += `${option} `;
             });
 
@@ -215,6 +225,8 @@ export default function tasks() {
 
             } else if (!e.target.checked) {
                 liSubTask.className = 'undone'
+                liTask.className = 'task undone'
+                tasks[indexUl].status = 'undone';
                 tasks[indexUl].subTasks[index].status = 'undone';
                 tasks[indexUl].subTasks[index].checked = false;
                 tasks[indexUl].progress = prevVal - value;
@@ -294,11 +306,11 @@ export default function tasks() {
     searchBarTasks.addEventListener('keyup', (e) => {
         const searchInput = e.target.value.toLowerCase();
         let tasks = Array.from(tasksList.querySelectorAll('li.task'));
+        console.log(searchInput)
         //loop of tasks
         for (let i = 0; i < tasks.length; i++) {
             const taskName = tasks[i].firstElementChild.textContent;
             const subTasks = Array.from(tasks[i].getElementsByTagName('li'))
-
             if (taskName.toLocaleLowerCase().indexOf(searchInput) != -1) {
                 tasks[i].style.display = 'block';
             } else {
@@ -318,9 +330,39 @@ export default function tasks() {
         }
     });
 
+    //show and hide done and undone tasks
+  const undoneCheckBox = document.getElementById('undone');
+  const doneCheckBox = document.getElementById('done');
+
+  undoneCheckBox.addEventListener('click', () => {
+    hideTasks(undoneCheckBox, 'undone');
+  });
+
+  doneCheckBox.addEventListener('click', () => {
+    hideTasks(doneCheckBox, 'done');
+  });
+
+  function hideTasks(checkBox, status) {
+    const messages = Array.from(tasksList.getElementsByTagName('li'));
+    if (checkBox.checked) {
+      messages.forEach(message => {
+        if (message.className == 'task ' + status) {
+          message.style.display = 'block';
+        }
+      });
+    } else if (!checkBox.checked) {
+      messages.forEach(message => {
+        if (message.className == 'task ' + status) {
+          message.style.display = 'none';
+        }
+      });
+    }
+  }
+
     function fillSelectList(selectList, i) {
         const option = document.createElement('option');
-        option.innerText = users[i].name;
+        const userName = users[i].name.charAt(0).toUpperCase() + users[i].name.slice(1)
+        option.innerText = `${userName} Core Skill: ${users[i].coreSkill}`;
         selectList.appendChild(option);
         if (users.length <= 23) {
             selectList.setAttribute('size', users.length - 1);
@@ -331,7 +373,7 @@ export default function tasks() {
 
     function showTasks() {
         //if user no admin create tasks and show them
-        if (user.name != 'admin') {
+        if (!user.isAdmin) {
             createElements(false)
             hideElements('#tasks_wrapper header .page-banner');
             forms['search-tasks'].style.display = 'block';
@@ -346,7 +388,7 @@ export default function tasks() {
                 el.classList.remove('check')
             })
         //if user admin create tasks and show all tasks 
-        } else if (user.name == 'admin') {
+        } else if (user.isAdmin) {
             createElements(true)
         }
     }
@@ -375,8 +417,8 @@ export default function tasks() {
 
 
             // add text content
-            tasks[i].contributors.forEach(e => {
-                contributorsValue.textContent += `${e} `;
+            tasks[i].contributors.forEach(el => {
+                contributorsValue.textContent += `${el.charAt(0).toUpperCase() + el.slice(1)} `;
             })
 
            

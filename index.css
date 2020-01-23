@@ -6,6 +6,7 @@ body, html, main {
 }
 
 header nav ul {
+  
     list-style: none;
     display: flex;
     flex-wrap: nowrap;
@@ -15,8 +16,6 @@ header nav ul {
     margin: 0;
     padding: 0;
     border-bottom: 1px solid whitesmoke;
-    
-    
 }
 
 header nav ul li {
@@ -43,11 +42,11 @@ nav li:hover{
   
 }
 
-#nav_profile {
+#nav_profile, .about_us {
   position: relative;
 }
 
-#nav_profile:hover #nav_profile_ul{
+#nav_profile:hover #nav_profile_ul, .about_us:hover .about_us_ul {
   position: absolute;
   width: 100%;
   display: block;
@@ -56,30 +55,71 @@ nav li:hover{
   z-index: 50;
 }
 
-#nav_profile_ul {
+#nav_profile_ul, .about_us_ul {
  display: none;
 }
 
 
-#nav_profile_ul li {
+#nav_profile_ul li, .about_us_ul li {
   border-bottom: 1px solid whitesmoke;
   border-right: 1px solid whitesmoke;
   border-left: 1px solid whitesmoke;
   padding: 10px 20px;
 }
 
-#nav_profile_ul li:last-child {
+#nav_profile_ul li:last-child, .about_us_ul li:last-child {
   border-bottom: none;
   
 }
 
 
+#logged_in, #logged_out {
+  display: none;
+}
+
+#employees_button {
+  display: none;
+}
+
+#search_logged_in, #search_logged_out {
+  position: relative;
+}
+
+
+#search_logged_in ul,  #search_logged_out ul{
+  display: none;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  z-index: 50;
+  
+}
+
+
+#search_logged_in ul li,  #search_logged_out ul li {
+  border: none;
+}
+
+#search_logged_out input, #search_logged_in input {
+  display: none;
+}
+
+#search_logged_out span, #search_logged_in span {
+  background-image: url('./src/images/images\ \(1\).png');
+  background-color: white;
+  width: 20px;
+  height: 20px;
+  display: block;
+  background-size:cover;
+  background-position: center;
+  margin: 0 auto;
+}
+
 .carousel-wrapper{
     height:100%;
     position:relative;
     width:100%;
-    margin:0 auto;
-
+    margin:0 auto; 
   }
   .carousel-item{
     position:absolute;
@@ -118,12 +158,10 @@ nav li:hover{
   
   /*Select every element*/
   [id^="item"] {
-      display: none;
-    }
+      display: none
+  }
   
   .item-1 {
-      z-index: 2;
-      opacity: 1;
     background:url('./src/images/computer-1185626_1920.jpg');
     background-size:cover;
     background-position: center;
@@ -145,19 +183,15 @@ nav li:hover{
   }
   
   
-  *:target ~ .item-1 {
-      opacity: 0;
-    }
+ 
+    
   
-  #item-1:target ~ .item-1 {
-      opacity: 1;
-    }
-  
-  #item-2:target ~ .item-2, #item-3:target ~ .item-3, #item-4:target ~ .item-4{
+  #item-2:checked ~ .item-2, #item-3:checked ~ .item-3, #item-4:checked ~ .item-4, #item-1:checked ~ .item-1{
       z-index: 3;
       opacity: 1;
     }
 
+    
 
   
 
@@ -211,9 +245,50 @@ nav li:hover{
   }
 
 
+.founders {
+  display: none;
+  justify-content: center;
+  width: 50%;
+  height: 50%;
+}
+
+.item-5 {
+  background:url('./src/images/computer-1185626_1920.jpg') no-repeat;
+  background-size:300px 300px;
+  background-position: center;
+  }
+.item-6{
+  background:url('./src/images/paper-3213924_1920.jpg') no-repeat;
+   background-size:300px 300px;
+   background-position: center;
+}
+.item-7{
+  background:url('./src/images/startup-593341_1920.jpg') no-repeat;
+   background-size:300px 300px;
+   background-position: center;
+}
+.item-8{
+  background:url('./src/images/workplace-1245776_1920.jpg') no-repeat;
+   background-size:300px 300px;
+   background-position: center;
+}
+
+.carousel-item p {
+  position: relative;
+  text-align: center;
+  top: 80%;
+}
 
 
+#item-5:checked ~ .item-5, #item-6:checked ~ .item-6, #item-7:checked ~ .item-7, #item-8:checked ~ .item-8 {
+  z-index: 3;
+  opacity: 1;
+}
 
+
+.employees_button {
+  display: none;
+}
 /*New task*/
 #tasks_wrapper, #messages_wrapper{
   width: 90%;
@@ -460,6 +535,66 @@ line-height: 52px;
 
 
 
+body .pagination {
+  width: 90%;
+  max-width: 960px;
+  margin: 20px auto;
+  border-radius: 6px;
+  box-shadow: 0px 1px 6px rgba(0,0,0,0.2);
+  box-sizing: border-box;
+  padding: 0 0 20px;
+  overflow: auto;
+  height: 90%;
+  border: 1px solid lightgray;
+  display: none;
+}
+body .pagination .tableList {
+  min-height: 250px;
+  text-indent: 20px;
+  height: 90%;
+}
+body .tableList .objectBlock {
+  position: relative;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  width: 50%;
+  margin: 10px auto;
+}
+body .pageButton {
+  border: 1px solid black;
+  padding: 5px;
+}
+body .clickPageNumber {
+  background-color: lightgrey;
+  padding: 5px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+body .pagination-block {
+  text-align: center;
+  width: 100%;
+}
+body .pagination-block span {
+  display: inline-block;
+}
+body .pagination-block .pageButton {
+  background-color: grey;
+  color: white;
+}
+body .pagination-block span:hover {
+  cursor: pointer;
+}
+body .opacity {
+  opacity: 0.5;
+}
+body .outline-none {
+  outline: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
 
 
 

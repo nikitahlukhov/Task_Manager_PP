@@ -15,48 +15,63 @@
       <nav id="logged_out">
         <ul>
           <li class="home_button">Home</li>
-          <li class="contacts_nav">Contacts</li>
-          <li id="sign_in">Sign In/ Sign Up</li>
+          <li class="about_us">About Us
+            <ul class="about_us_ul"> 
+              <li class="contacts_nav">Contacts</li>
+              <li class="founders_nav">Founders</li>
+              <li class="history_nav">History</li>
+            </ul>
+          </li>                  
+          <li id="search_logged_out"><input type="text"><span></span></li>
+          <li class="sign_in">Sign In/ Sign Up</li>
         </ul>
       </nav>
       <nav id="logged_in">
         <ul>
           <li class="home_button">Home</li>
+          <li class="about_us">About Us
+            <ul class="about_us_ul"> 
+              <li class="contacts_nav">Contacts</li>
+              <li class="founders_nav">Founders</li>
+              <li class="history_nav">History</li>
+            </ul>
+          </li>            
           <li id="nav_profile">
             Profile
             <ul id="nav_profile_ul">
-              <li id="tasks_button">Tasks</li>
-              <li id="messages_button">Messages</li>
+              <li class="tasks_button">Tasks</li>
+              <li class="messages_button">Messages</li>
+              <li class="employees_button">Employees</li>
             </ul>
           </li>
-          <li class="contacts_nav">Contacts</li>
-          <li id="logout">logout</li>
+          <li id="search_logged_in"><input type="text" ><span></span></li>
+          <li class="logout">logout</li>
         </ul>
       </nav>
     </header>
     <main>
       <div class="carousel-wrapper">
-        <span id="item-1"></span>
-        <span id="item-2"></span>
-        <span id="item-3"></span>
-        <span id="item-4"></span>
+        <input type="radio" id="item-1" name="carousel" checked>
+        <input type="radio" id="item-2" name="carousel">
+        <input type="radio" id="item-3" name="carousel">
+        <input type="radio" id="item-4" name="carousel">
         <div class="carousel-item item-1">
-          <a class="arrow arrow-prev" href="#item-4"></a>
-          <a class="arrow arrow-next" href="#item-2"></a>
+          <label for="item-4" class="arrow arrow-prev" ></label>
+          <label for="item-2" class="arrow arrow-next" ></label>
         </div>
 
         <div class="carousel-item item-2">
-          <a class="arrow arrow-prev" href="#item-1"></a>
-          <a class="arrow arrow-next" href="#item-3"></a>
+          <label for="item-1" class="arrow arrow-prev" ></label>
+          <label for="item-3" class="arrow arrow-next" ></label>
         </div>
 
         <div class="carousel-item item-3">
-          <a class="arrow arrow-prev" href="#item-2"></a>
-          <a class="arrow arrow-next" href="#item-4"></a>
+          <label for="item-2" class="arrow arrow-prev" ></label>
+          <label for="item-4" class="arrow arrow-next" ></label>
         </div>
         <div class="carousel-item item-4">
-          <a class="arrow arrow-prev" href="#item-3"></a>
-          <a class="arrow arrow-next" href="#item-1"></a>
+          <label for="item-3" class="arrow arrow-prev" ></label>
+          <label for="item-1" class="arrow arrow-next" ></label>
         </div>
       </div>
       <div class="sign_in_page">
@@ -76,7 +91,7 @@
               value="admin"
             />
             <button id="sign_in_button">Sign in</button>
-            <button id="sign_up">Sign up</button>
+            <button id="sign_up_button">Sign up</button>
           </form>
         </div>
         <div class="sign_up_wrapper">
@@ -88,21 +103,14 @@
               placeholder="Password"
               id="sign_up_password"
             />
-            <input type="email" placeholder="email" id="sign_up_email" />
-            <button id="save">Save</button>
+            <input type="text" placeholder="Core skill" id="sign_up_skill" />
+            <button id="save_button">Save</button>
           </form>
         </div>
       </div>
       <div class="contacts">
         <div id="map">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2540.4379024754016!2d30.53159721586767!3d50.45156979516515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ce4dbddcb8e9%3A0xf40459662f740935!2sHangover!5e0!3m2!1sru!2sua!4v1579176815217!5m2!1sru!2sua"
-            width="600"
-            height="450"
-            frameborder="0"
-            style="border:0;"
-            allowfullscreen=""
-          ></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d20309.075323923767!2d30.4721233!3d50.4851493!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1579641813513!5m2!1sru!2sua" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
         </div>
         <div id="map_info">
           <p><strong>Adress:</strong>Abdc, Kyiv</p>
@@ -120,6 +128,37 @@
           </p>
         </div>
       </div>
+      <div class="founders">
+        
+
+        <input type="radio" id="item-5" name="carousel_founders" checked>
+        <input type="radio" id="item-6" name="carousel_founders">
+        <input type="radio" id="item-7" name="carousel_founders">
+        <input type="radio" id="item-8" name="carousel_founders">
+        <div class="carousel-item item-5">
+          <label for="item-8" class="arrow arrow-prev" ></label>
+          <label for="item-6" class="arrow arrow-next" ></label>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae blanditiis aliquid suscipit! Nostrum sit deserunt libero aliquid, molestiae aspernatur provident facilis sequi autem reprehenderit, voluptas obcaecati amet hic temporibus incidunt.</p>
+        </div>
+
+        <div class="carousel-item item-6">
+          <label for="item-5" class="arrow arrow-prev" ></label>
+          <label for="item-7" class="arrow arrow-next" ></label>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae blanditiis aliquid suscipit! Nostrum sit deserunt libero aliquid, molestiae aspernatur provident facilis sequi autem reprehenderit, voluptas obcaecati amet hic temporibus incidunt.</p>
+        </div>
+
+        <div class="carousel-item item-7">
+          <label for="item-6" class="arrow arrow-prev" ></label>
+          <label for="item-8" class="arrow arrow-next" ></label>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae blanditiis aliquid suscipit! Nostrum sit deserunt libero aliquid, molestiae aspernatur provident facilis sequi autem reprehenderit, voluptas obcaecati amet hic temporibus incidunt.</p>
+        </div>
+        <div class="carousel-item item-8">
+          <label for="item-7" class="arrow arrow-prev" ></label>
+          <label for="item-5" class="arrow arrow-next" ></label>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae blanditiis aliquid suscipit! Nostrum sit deserunt libero aliquid, molestiae aspernatur provident facilis sequi autem reprehenderit, voluptas obcaecati amet hic temporibus incidunt.</p>
+        </div>
+        </div>
+      
 
       <div id="tasks_wrapper">
         <header>
@@ -159,6 +198,12 @@
           </div>
         </header>
         <div id="task-list">
+          <input type="checkbox" id="undone" checked /><label for="undone"
+            >undone</label
+          >
+          <input type="checkbox" id="done" checked /><label for="done"
+            >done</label
+          >
           <h2 class="title">tasks</h2>
           <ul></ul>
         </div>
@@ -196,7 +241,7 @@
           <h2 class="title">sent messages</h2>
           <ul></ul>
         </div>
-        <div id="message-list_inbox" class="sub_task_invis">
+        <div id="message-list_inbox" class="messages_invis">
           <input type="checkbox" id="unseen" checked /><label for="unseen"
             >unseen</label
           >
@@ -205,6 +250,14 @@
           >
           <h2 class="title">inbox</h2>
           <ul></ul>
+        </div>
+      </div>
+      <div class="pagination">
+        <div class="tableList" id="listingTable"></div>
+        <div class="pagination-block">
+          <span class="pageButton outline-none" id="button_prev">Prev</span>
+          <span id="page_number" class="outline-none"></span>
+          <span class="pageButton outline-none" id="button_next">Next</span>
         </div>
       </div>
     </main>
@@ -229,6 +282,6 @@
         </div>
       </div>
     </footer>
-    <script src="./src/index.js" type="module"></script>
+    <script src="./dist/bundle.js"></script>
   </body>
 </html>

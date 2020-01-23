@@ -1,70 +1,58 @@
 export default function login_page() {
-    let login = document.getElementById('sign_in');
-    let carousel = document.querySelector('.carousel-wrapper');
+    const login = document.querySelectorAll('.sign_in');
+    const carousel = document.querySelector('.carousel-wrapper');
 
-    let sign_in_page = document.querySelector('.sign_in_page');
-    let sign_in_form = document.querySelector('.sign_in_wrapper form');
-    let userName_SignIn = document.getElementById('sign_in_login');
-    let password_SignIn = document.getElementById('sign_in_password');
-    let sign_in = document.getElementById('sign_in_button');
-    let sign_up = document.getElementById('sign_up');
+    const signInPage = document.querySelector('.sign_in_page');
+    const signInForm = document.querySelector('.sign_in_wrapper form');
+    const userName_SignIn = document.getElementById('sign_in_login');
+    const password_SignIn = document.getElementById('sign_in_password');
+    const signInButton = document.getElementById('sign_in_button');
+    const signUpButton = document.getElementById('sign_up_button');
 
-    let sign_up_form = document.querySelector('.sign_up_wrapper form');
-    let userName_SignUp = document.getElementById('sign_up_login');
-    let password_SignUp = document.getElementById('sign_up_password');
-    let email_SignUp = document.getElementById('sign_up_email');
-    let save = document.getElementById('save');
-
-
-
-    login.addEventListener('click', function () {
-        showElement()
-        sign_up_form.style.display = 'none';
-        sign_in_page.style.display = 'flex';
-        sign_in_form.style.display = 'flex';
-        removeAlertSignUp()
-    })
+    const signUpForm = document.querySelector('.sign_up_wrapper form');
+    const userName_SignUp = document.getElementById('sign_up_login');
+    const password_SignUp = document.getElementById('sign_up_password');
+    const coreSkill = document.getElementById('sign_up_skill');
+    const saveButton = document.getElementById('save_button');
+    const profileName = document.getElementById('nav_profile');
 
 
-    sign_in.addEventListener('click', function () {
+    for (let i = 0; i < login.length; i++) {
+        login[i].addEventListener('click', () => {
+            hideElements()
+            signUpForm.style.display = 'none';
+            signInPage.style.display = 'flex';
+            signInForm.style.display = 'flex';
+            removeAlertSignUp()
+        });
+    }
+   
+
+
+    signInButton.addEventListener('click', () => {
         if (userName_SignIn.value == '' || password_SignIn.value == '') {
             addAlertMessageSignIn('Please Fill in both forms')
             clearInput()
+            
             event.preventDefault()
         }
 
 
         let hasPass = [];
-        let usersArray = JSON.parse(window.localStorage.users);
+        const usersArray = JSON.parse(window.localStorage.users);
         for (let i = 0; i < usersArray.length; i++) {
             hasPass.push(usersArray[i].name)
             hasPass.push(usersArray[i].password)
             if (userName_SignIn.value == usersArray[i].name
-                && password_SignIn.value == usersArray[i].password
-                && usersArray[i].isAdmin == true) {
+                && password_SignIn.value == usersArray[i].password){
                 clearInput();
+                hideElements();
                 usersArray[i].loggedIn = true;
                 window.localStorage.users = JSON.stringify(usersArray);
-                document.getElementById('logged_out').style.display = 'none';
+                profileName.childNodes[0].textContent = usersArray[i].name;
+                break;
 
-                showElement()
-                document.getElementById('task_wrapper').style.display = 'block';
-                document.getElementById('logged_in').style.display = 'block';
-                event.preventDefault()
-
-            } else if (userName_SignIn.value == usersArray[i].name
-                && password_SignIn.value == usersArray[i].password) {
-                clearInput()
-                usersArray[i].loggedIn = true;
-                window.localStorage.users = JSON.stringify(usersArray);
-                document.getElementById('logged_out').style.display = 'none';
-
-                showElement()
-                document.getElementById('task_wrapper').style.display = 'block';
-                document.getElementById('logged_in').style.display = 'block';
-                event.preventDefault()
-            }
-
+            } 
         }
 
         if (userName_SignIn.value != '' && password_SignIn.value != '') {
@@ -75,7 +63,7 @@ export default function login_page() {
             }
         }
 
-
+        
     })
 
     userName_SignIn.addEventListener('focus', removeAlertSignIn)
@@ -86,11 +74,11 @@ export default function login_page() {
 
     password_SignUp.addEventListener('focus', removeAlertSignUp)
 
-    email_SignUp.addEventListener('focus', removeAlertSignUp)
+    coreSkill.addEventListener('focus', removeAlertSignUp)
 
-    sign_up.addEventListener('click', () => {
-        sign_in_form.style.display = 'none'
-        sign_up_form.style.display = 'flex';
+    signUpButton.addEventListener('click', () => {
+        signInForm.style.display = 'none'
+        signUpForm.style.display = 'flex';
         removeAlertSignIn()
         event.preventDefault()
     })
@@ -98,35 +86,32 @@ export default function login_page() {
 
 
 
-    save.addEventListener('click', () => {
-        if (userName_SignUp.value == '' || password_SignUp.value == '' || email_SignUp.value == '') {
+    saveButton.addEventListener('click', () => {
+        if (userName_SignUp.value == '' || password_SignUp.value == '' || coreSkill.value == '') {
             addAlertMessageSignUp('Please Fill in all forms');
         }
 
         let newUser = {
             name: userName_SignUp.value,
             password: password_SignUp.value,
-            email: email_SignUp.value,
+            coreSkill: coreSkill.value,
             loggedIn: false,
+            isAdmin: false,
         }
-        if (window.localStorage.users && userName_SignUp.value != '' && password_SignUp.value != '' && email_SignUp.value != '') {
+        if (window.localStorage.users && userName_SignUp.value != '' && password_SignUp.value != '' && coreSkill.value != '') {
             let usersArray = JSON.parse(window.localStorage.users);
             if (isUserNameExist(newUser)) {
                 addAlertMessageSignUp('User with such login already exist');
                 clearInput()
                 event.preventDefault()
-            } else if (isUserEmailExist(newUser)) {
-                addAlertMessageSignUp('User with such email already exist');
-                clearInput()
-                event.preventDefault()
-            }
-            else if (!isUserNameExist(newUser) && !isUserEmailExist(newUser)) {
+            } 
+            else if (!isUserNameExist(newUser)) {
                 usersArray.push(newUser);
                 window.localStorage.users = JSON.stringify(usersArray);
                 carousel.style.display = 'none';
-                sign_up_form.style.display = 'none';
-                sign_in_page.style.display = 'flex';
-                sign_in_form.style.display = 'flex';
+                signUpForm.style.display = 'none';
+                signInPage.style.display = 'flex';
+                signInForm.style.display = 'flex';
                 clearInput()
                 event.preventDefault();
             }
@@ -152,25 +137,16 @@ export default function login_page() {
         }
     }
 
-    function isUserEmailExist(newUser) {
-        let usersArray = JSON.parse(window.localStorage.users);
-        for (let i = 0; i < usersArray.length; i++) {
-            if (newUser.email == usersArray[i].email) {
-                return true
-            }
-        }
-    }
-
     function removeAlertSignIn() {
-        if (sign_in_form.lastElementChild.tagName == 'P') {
-            sign_in_form.lastElementChild.remove()
+        if (signInForm.lastElementChild.tagName == 'P') {
+            signInForm.lastElementChild.remove()
             event.preventDefault()
         }
     }
 
     function removeAlertSignUp() {
-        if (sign_up_form.lastElementChild.tagName == 'P') {
-            sign_up_form.lastElementChild.remove()
+        if (signUpForm.lastElementChild.tagName == 'P') {
+            signUpForm.lastElementChild.remove()
             event.preventDefault()
         }
     }
@@ -179,8 +155,8 @@ export default function login_page() {
         let alert_message = document.createElement('p')
         alert_message.innerText = message;
         alert_message.style.color = 'red';
-        if (sign_up_form.lastElementChild.tagName == 'BUTTON') {
-            sign_up_form.appendChild(alert_message)
+        if (signUpForm.lastElementChild.tagName == 'BUTTON') {
+            signUpForm.appendChild(alert_message)
         }
         event.preventDefault()
     }
@@ -189,13 +165,13 @@ export default function login_page() {
         let alert_message = document.createElement('p')
         alert_message.innerText = message;
         alert_message.style.color = 'red';
-        if (sign_in_form.lastElementChild.tagName == 'BUTTON') {
-            sign_in_form.appendChild(alert_message)
+        if (signInForm.lastElementChild.tagName == 'BUTTON') {
+            signInForm.appendChild(alert_message)
         }
         event.preventDefault()
     }
 
-    function showElement() {
+    function hideElements() {
         let arr = document.querySelectorAll('main > *');
         for (let i = 0; i < arr.length; i++) {
             arr[i].style.display = 'none';
