@@ -73,11 +73,11 @@ export default function tasks() {
         const taskNameValue = addForm.querySelector('input[type="text"]').value;
         const taskName = document.createElement('span');
         const taskProgress = document.createElement('span');
-        taskProgress.style.color = 'red';
         const subTasks = addForm.querySelectorAll('.subtask');
         
         const contributors = document.createElement('li');
         const contributorsValue = document.createElement('span');
+        const contributorsSpan = document.createElement('span');
         
         const li = document.createElement('li');
         const deleteButton = document.createElement('span');
@@ -95,6 +95,7 @@ export default function tasks() {
             task.contributors = [];
             task.status = 'undone';
             task.checked = false;
+            contributorsSpan.textContent = 'Contributors: '
             taskName.textContent = taskNameValue;
             taskProgress.textContent = 0 + '%';
             deleteButton.textContent = 'delete';
@@ -105,6 +106,7 @@ export default function tasks() {
             });
 
             // add classes
+            taskProgress.classList.add('progress');
             deleteButton.classList.add('delete');
             li.classList.add('task');
             li.classList.add('undone');
@@ -141,10 +143,10 @@ export default function tasks() {
             li.appendChild(deleteButton);
             tasksList.appendChild(li);
             li.appendChild(ul);
+            contributors.appendChild(contributorsSpan)
             contributors.appendChild(contributorsValue)
-            if (contributorsValue.textContent) {
-                ul.appendChild(contributors);
-            }
+            ul.appendChild(contributors);
+            
 
             addForm.querySelectorAll('input[type="text"]').forEach(el => {
                 el.value = '';
@@ -306,19 +308,18 @@ export default function tasks() {
     searchBarTasks.addEventListener('keyup', (e) => {
         const searchInput = e.target.value.toLowerCase();
         let tasks = Array.from(tasksList.querySelectorAll('li.task'));
-        console.log(searchInput)
         //loop of tasks
         for (let i = 0; i < tasks.length; i++) {
             const taskName = tasks[i].firstElementChild.textContent;
             const subTasks = Array.from(tasks[i].getElementsByTagName('li'))
-            if (taskName.toLocaleLowerCase().indexOf(searchInput) != -1) {
+            if (taskName.toLowerCase().indexOf(searchInput) != -1) {
                 tasks[i].style.display = 'block';
             } else {
                 //if no matches loop in subtasks
                 for (let f = 0; f < subTasks.length; f++) {
                     const subTaskName = subTasks[f].firstElementChild.textContent;
                     if (!subTasks[f].classList.contains('task')) {
-                        if (subTaskName.toLocaleLowerCase().indexOf(searchInput) != -1) {
+                        if (subTaskName.toLowerCase().indexOf(searchInput) != -1) {
                             subTasks[f].parentElement.parentElement.style.display = 'block';
                             break;
                         } else {
@@ -408,6 +409,7 @@ export default function tasks() {
 
             const contributors = document.createElement('li');
             const contributorsValue = document.createElement('span');
+            const contributorsSpan = document.createElement('span');
 
             const ul = document.createElement('ul');
             const checkbox = document.createElement('input');
@@ -421,7 +423,7 @@ export default function tasks() {
                 contributorsValue.textContent += `${el.charAt(0).toUpperCase() + el.slice(1)} `;
             })
 
-           
+            contributorsSpan.textContent = 'Contributors: ';
             taskName.textContent = taskNameValue;
             taskProgress.textContent = tasks[i].progress + '%';
             deleteButton.textContent = 'delete';
@@ -429,7 +431,7 @@ export default function tasks() {
             // add classes
 
             taskName.classList.add('name');
-            taskProgress.style.color = 'red';
+            taskProgress.classList.add('progress');
             deleteButton.classList.add('delete');
             li.setAttribute('value', indexValue);
             li.classList.add('task');
@@ -439,7 +441,7 @@ export default function tasks() {
             checkbox.classList.add('doneTask')
 
 
-            //creatin subtasks
+            //creating subtasks
             if (tasks[i].subTasks.length > 0) {
                 let subTaskValue = (100 / tasks[i].subTasks.length).toFixed();
 
@@ -470,10 +472,10 @@ export default function tasks() {
 
 
             // append to DOM
-            if (contributorsValue.textContent) {
-                contributors.appendChild(contributorsValue)
-                ul.appendChild(contributors);
-            }
+            contributors.appendChild(contributorsSpan)
+            contributors.appendChild(contributorsValue)
+            ul.appendChild(contributors);
+            
 
             li.appendChild(taskName);
             li.appendChild(checkbox);

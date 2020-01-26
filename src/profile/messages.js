@@ -110,15 +110,17 @@ export default function messages() {
       });
 
       // add classes
+      date.classList.add('date');
       deleteButton.classList.add('delete');
       li.classList.add('message');
       li.classList.add('unseen');
       messageBody.classList.add('hide_message');
 
       // append to DOM
+      li.appendChild(date);
       li.appendChild(subject);
       li.appendChild(messageShort);
-      li.appendChild(date);
+      
       li.appendChild(deleteButton);
       messageBody.appendChild(contributors);
       messageBody.appendChild(message);
@@ -296,14 +298,16 @@ export default function messages() {
 
         // add classes
         deleteButton.classList.add('delete');
+        date.classList.add('date');
         li.classList.add('message');
         li.classList.add(userMessages[i].status);
         messageBody.classList.add('hide_message');
 
         // append to DOM
+        li.appendChild(date);
         li.appendChild(subject);
         li.appendChild(messageShort);
-        li.appendChild(date);
+        
         li.appendChild(deleteButton);
         if (fromWhom) {
           messageBody.appendChild(fromWhom);

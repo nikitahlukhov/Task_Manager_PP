@@ -6,16 +6,14 @@ import tasks from './profile/tasks.js'
 import employees from './profile/employees.js'
 import search from './search.js'
 
-logout();
-search();
-login_page();
 
-aboutUs();
 
 //foreach for ie11
 if (window.NodeList && !NodeList.prototype.forEach) {
     NodeList.prototype.forEach = Array.prototype.forEach;
 }
+
+
 
 
 
@@ -81,6 +79,149 @@ if (!window.localStorage.users){
         },
         isAdmin: false,
     },
+    {
+        name: "kolya",
+        password: "vova",
+        coreSkill: "energy",
+        loggedIn: false,
+        messages: {
+            sentMessages: [],
+            inboxMessages: [],
+        },
+        isAdmin: false,
+    },
+    {
+        name: "katya",
+        password: "vova",
+        coreSkill: "wine",
+        loggedIn: false,
+        messages: {
+            sentMessages: [],
+            inboxMessages: [],
+        },
+        isAdmin: false,
+    },
+    {
+        name: "masha",
+        password: "vova",
+        coreSkill: "love",
+        loggedIn: false,
+        messages: {
+            sentMessages: [],
+            inboxMessages: [],
+        },
+        isAdmin: false,
+    },
+    {
+        name: "mazur",
+        password: "vova",
+        coreSkill: "drink",
+        loggedIn: false,
+        messages: {
+            sentMessages: [],
+            inboxMessages: [],
+        },
+        isAdmin: false,
+    },
+    {
+        name: "bob",
+        password: "vova",
+        coreSkill: "bob",
+        loggedIn: false,
+        messages: {
+            sentMessages: [],
+            inboxMessages: [],
+        },
+        isAdmin: false,
+    },
+    {
+        name: "dasha",
+        password: "vova",
+        coreSkill: "marketing",
+        loggedIn: false,
+        messages: {
+            sentMessages: [],
+            inboxMessages: [],
+        },
+        isAdmin: false,
+    },
+    {
+        name: "igor",
+        password: "vova",
+        coreSkill: "Intelligence",
+        loggedIn: false,
+        messages: {
+            sentMessages: [],
+            inboxMessages: [],
+        },
+        isAdmin: false,
+    },
+    {
+        name: "sasha",
+        password: "vova",
+        coreSkill: "Intelligence",
+        loggedIn: false,
+        messages: {
+            sentMessages: [],
+            inboxMessages: [],
+        },
+        isAdmin: false,
+    },
+    {
+        name: "mazur",
+        password: "vova",
+        coreSkill: "drink",
+        loggedIn: false,
+        messages: {
+            sentMessages: [],
+            inboxMessages: [],
+        },
+        isAdmin: false,
+    },
+    {
+        name: "bob",
+        password: "vova",
+        coreSkill: "bob",
+        loggedIn: false,
+        messages: {
+            sentMessages: [],
+            inboxMessages: [],
+        },
+        isAdmin: false,
+    },
+    {
+        name: "dasha",
+        password: "vova",
+        coreSkill: "marketing",
+        loggedIn: false,
+        messages: {
+            sentMessages: [],
+            inboxMessages: [],
+        },
+        isAdmin: false,
+    },
+    {
+        name: "igor",
+        password: "vova",
+        coreSkill: "Intelligence",
+        loggedIn: false,
+        messages: {
+            sentMessages: [],
+            inboxMessages: [],
+        },
+        isAdmin: false,
+    },
+    {
+        name: "sasha",
+        password: "vova",
+        coreSkill: "Intelligence",
+        loggedIn: false,
+        messages: {
+            sentMessages: [],
+            inboxMessages: [],
+        },
+        isAdmin: false,
+    },
 ];
     window.localStorage.users = JSON.stringify(registeredUsers);
         
@@ -102,6 +243,12 @@ if (isLogged()){
      
 }
 
+
+logout();
+search();
+login_page();
+
+aboutUs();
 messages(); 
 tasks();
 employees()

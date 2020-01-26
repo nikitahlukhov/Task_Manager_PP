@@ -15,6 +15,8 @@ export default function aboutUs () {
         })
     }
 
+
+
     //founders
 
     const founders = document.querySelectorAll('.founders_nav');
@@ -29,5 +31,17 @@ export default function aboutUs () {
                 founders_page.style.display = 'flex';
         })
     }
-    
+
+    const history = document.querySelectorAll('.history_nav');
+    const history_page = document.querySelector('.history')
+
+    for(let i = 0; i < history.length; i++){
+        history[i].addEventListener('click', ()=>{
+            let arr = document.querySelectorAll('main > *');
+                for (let i=0; i<arr.length; i++){
+                    arr[i].style.display = 'none'; 
+                }
+                history_page.style.display = 'flex';
+        })
+    }
 }

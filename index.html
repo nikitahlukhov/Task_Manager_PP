@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=11" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="index.css" />
+    <link
+      rel="shortcut icon"
+      href="./src/images/icons8-отмеченный-чекбокс-2-32.png"
+      type="image/x-icon"
+    />
     <title>Task Management 3000</title>
+    <link rel="stylesheet" href="index.css" />
   </head>
 
   <body>
@@ -15,27 +20,29 @@
       <nav id="logged_out">
         <ul>
           <li class="home_button">Home</li>
-          <li class="about_us">About Us
-            <ul class="about_us_ul"> 
+          <li class="about_us">
+            About Us
+            <ul class="about_us_ul">
               <li class="contacts_nav">Contacts</li>
               <li class="founders_nav">Founders</li>
               <li class="history_nav">History</li>
             </ul>
-          </li>                  
-          <li id="search_logged_out"><input type="text"><span></span></li>
-          <li class="sign_in">Sign In/ Sign Up</li>
+          </li>
+          <li id="search_logged_out"><input type="search" /><span></span></li>
+          <li class="sign_in">Sign In</li>
         </ul>
       </nav>
       <nav id="logged_in">
         <ul>
           <li class="home_button">Home</li>
-          <li class="about_us">About Us
-            <ul class="about_us_ul"> 
+          <li class="about_us">
+            About Us
+            <ul class="about_us_ul">
               <li class="contacts_nav">Contacts</li>
               <li class="founders_nav">Founders</li>
               <li class="history_nav">History</li>
             </ul>
-          </li>            
+          </li>
           <li id="nav_profile">
             Profile
             <ul id="nav_profile_ul">
@@ -44,39 +51,58 @@
               <li class="employees_button">Employees</li>
             </ul>
           </li>
-          <li id="search_logged_in"><input type="text" ><span></span></li>
+          <li id="search_logged_in"><input type="search" /><span></span></li>
           <li class="logout">logout</li>
         </ul>
       </nav>
     </header>
     <main>
       <div class="carousel-wrapper">
-        <input type="radio" id="item-1" name="carousel" checked>
-        <input type="radio" id="item-2" name="carousel">
-        <input type="radio" id="item-3" name="carousel">
-        <input type="radio" id="item-4" name="carousel">
+        <input type="radio" id="item-1" name="carousel" checked />
+        <input type="radio" id="item-2" name="carousel" />
+        <input type="radio" id="item-3" name="carousel" />
+        <input type="radio" id="item-4" name="carousel" />
         <div class="carousel-item item-1">
-          <label for="item-4" class="arrow arrow-prev" ></label>
-          <label for="item-2" class="arrow arrow-next" ></label>
+          <label for="item-4" class="arrow arrow-prev"></label>
+          <label for="item-2" class="arrow arrow-next"></label>
+          <h2>
+            Even the best managers have a hard time keeping up with their team's
+            tasks. Let Task Manager 3000 help you stay on top of your team's
+            tasks so you can accomplish more together.
+          </h2>
         </div>
 
         <div class="carousel-item item-2">
-          <label for="item-1" class="arrow arrow-prev" ></label>
-          <label for="item-3" class="arrow arrow-next" ></label>
+          <label for="item-1" class="arrow arrow-prev"></label>
+          <label for="item-3" class="arrow arrow-next"></label>
+          <h2>
+            "There was a huge sigh of relief when I found TM3000. It gives the
+            ability to track tasks and stay on top of outstanding work, at a
+            glance." <br />
+            J.Reviewed on G2 Crowd
+          </h2>
         </div>
 
         <div class="carousel-item item-3">
-          <label for="item-2" class="arrow arrow-prev" ></label>
-          <label for="item-4" class="arrow arrow-next" ></label>
+          <label for="item-2" class="arrow arrow-prev"></label>
+          <label for="item-4" class="arrow arrow-next"></label>
+          <h2>
+            Task management software for startups who want to move fast and get
+            the job done.
+          </h2>
         </div>
         <div class="carousel-item item-4">
-          <label for="item-3" class="arrow arrow-prev" ></label>
-          <label for="item-1" class="arrow arrow-next" ></label>
+          <label for="item-3" class="arrow arrow-prev"></label>
+          <label for="item-1" class="arrow arrow-next"></label>
+          <h2>
+            It's A Simple, Yet Powerful Application That Startups and Founders
+            Will Love.
+          </h2>
         </div>
       </div>
       <div class="sign_in_page">
         <div class="sign_in_wrapper">
-          <form action="">
+          <form >
             <p>Sign in or Sign up</p>
             <input
               type="text"
@@ -95,7 +121,7 @@
           </form>
         </div>
         <div class="sign_up_wrapper">
-          <form action="">
+          <form >
             <p>To register fill in all the forms</p>
             <input type="text" placeholder="Login" id="sign_up_login" />
             <input
@@ -110,57 +136,116 @@
       </div>
       <div class="contacts">
         <div id="map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d20309.075323923767!2d30.4721233!3d50.4851493!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1579641813513!5m2!1sru!2sua" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2540.438085880778!2d30.53159721582075!3d50.45156637947554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4ce4dbddcb8e9%3A0xf40459662f740935!2sHangover!5e0!3m2!1sru!2sua!4v1579887197316!5m2!1sru!2sua"
+            style="border:0;"
+            allowfullscreen=""
+          ></iframe>
         </div>
+
         <div id="map_info">
           <p><strong>Adress:</strong>Abdc, Kyiv</p>
           <p><strong>Phone:</strong>044 444 44 44</p>
           <p><strong>Email:</strong> WUBALUBA@DABDAB.COM</p>
-          <p>
-            <a href="https://twitter.com/epam_ukraine"
-              ><strong>Twitter</strong></a
-            >
-          </p>
-          <p>
-            <a href="https://www.facebook.com/EPAM.Ukraine"
-              ><strong>Facebook</strong></a
-            >
-          </p>
         </div>
       </div>
       <div class="founders">
-        
-
-        <input type="radio" id="item-5" name="carousel_founders" checked>
-        <input type="radio" id="item-6" name="carousel_founders">
-        <input type="radio" id="item-7" name="carousel_founders">
-        <input type="radio" id="item-8" name="carousel_founders">
+        <input type="radio" id="item-5" name="carousel_founders" checked />
+        <input type="radio" id="item-6" name="carousel_founders" />
+        <input type="radio" id="item-7" name="carousel_founders" />
+        <input type="radio" id="item-8" name="carousel_founders" />
         <div class="carousel-item item-5">
-          <label for="item-8" class="arrow arrow-prev" ></label>
-          <label for="item-6" class="arrow arrow-next" ></label>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae blanditiis aliquid suscipit! Nostrum sit deserunt libero aliquid, molestiae aspernatur provident facilis sequi autem reprehenderit, voluptas obcaecati amet hic temporibus incidunt.</p>
+          <label for="item-8" class="arrow arrow-prev"></label>
+          <label for="item-6" class="arrow arrow-next"></label>
+          <h2>Luc Dorsey</h2>
+          <p>
+            Prior to TM3000, Luc held key leadership roles with Tata Consultancy
+            Services, in business, technology, sales, operations and consulting.
+            He was recognized as the BPO CEO of the year in 2010. In 2012, he
+            was recognized for his contribution to the IT services industry by
+            the Shared Services Organization of IPOC. He is on the board of the
+            World Affairs Council of Dallas Ft. Worth. He is also on the CEO
+            Council of the Texas Economic Development Corporation.
+          </p>
         </div>
 
         <div class="carousel-item item-6">
-          <label for="item-5" class="arrow arrow-prev" ></label>
-          <label for="item-7" class="arrow arrow-next" ></label>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae blanditiis aliquid suscipit! Nostrum sit deserunt libero aliquid, molestiae aspernatur provident facilis sequi autem reprehenderit, voluptas obcaecati amet hic temporibus incidunt.</p>
+          <label for="item-5" class="arrow arrow-prev"></label>
+          <label for="item-7" class="arrow arrow-next"></label>
+          <h2>Monika Noel</h2>
+          <p>
+            Monika Noel has nearly three decades of global experience in the IT
+            services industry with a track record of driving digital
+            transformation for enterprises, executing business turnarounds and
+            managing successful acquisitions. Previously, Monika was a member of
+            the Group Executive Board at Capgemini, where she held several
+            leadership positions over a 25 year period. Monika was also Partner
+            at Ernst & Young and widely credited for bringing scale and value to
+            the Indian operations of the consultancy firm.
+          </p>
         </div>
 
         <div class="carousel-item item-7">
-          <label for="item-6" class="arrow arrow-prev" ></label>
-          <label for="item-8" class="arrow arrow-next" ></label>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae blanditiis aliquid suscipit! Nostrum sit deserunt libero aliquid, molestiae aspernatur provident facilis sequi autem reprehenderit, voluptas obcaecati amet hic temporibus incidunt.</p>
+          <label for="item-6" class="arrow arrow-prev"></label>
+          <label for="item-8" class="arrow arrow-next"></label>
+          <h2>Sahara Cornish</h2>
+          <p>
+            Most recently, as Chief Operating Officer, she led the company’s
+            strategy to leverage the transformative nexus of forces like
+            Digitalization, Internet of Things, Cloud, Cyber-security and
+            Artificial Intelligence. Previously, as President of HCL’s
+            Infrastructure Services Business, she led its exponential growth and
+            market dominance over the years leading up to a contribution of
+            nearly 40% to TM’s revenues today.
+          </p>
         </div>
         <div class="carousel-item item-8">
-          <label for="item-7" class="arrow arrow-prev" ></label>
-          <label for="item-5" class="arrow arrow-next" ></label>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae blanditiis aliquid suscipit! Nostrum sit deserunt libero aliquid, molestiae aspernatur provident facilis sequi autem reprehenderit, voluptas obcaecati amet hic temporibus incidunt.</p>
+          <label for="item-7" class="arrow arrow-prev"></label>
+          <label for="item-5" class="arrow arrow-next"></label>
+          <h2>Sol Crouch & Eryn Stevens</h2>
+          <p>
+            In 2016, Sol engineered acquisition of Lockheed Martin’s Information
+            Systems & Global Solutions business. Before joining TM300, Sol
+            served as president of Network and Space Systems for The Boeing
+            Company. Eryn joined TM3000 from Sasken Communication Technologies,
+            where she was the Chief Executive Ofﬁcer until September 2014.
+            Previously, Eryn was a co-founder of Mindtree where she also held
+            the position of President of IT Services.
+          </p>
         </div>
+      </div>
+      <div class="history">
+        <div class="history-item-1">
+          <p>
+            Task Manager 3000 is, perhaps, the best known computer company in
+            the world. It began as the Computing, Tabulating & Recording Company
+            (C-T-R) founded by Luc Dorsey in the late 2000s. Their first large
+            contract was to provide tabulating equipment for the tabulation and
+            analysis of the 2009 US census.
+          </p>
         </div>
-      
+        <div class="history-item-2">
+          <p>
+            TM 300 offered a full range of hardware, software and service
+            agreements, so that users, as their needs grew. Since most software
+            was custom-written by in-house programmers, and would run on only
+            one brand of computers, it was too expensive to switch brands.
+            Brushing off clone makers, and facing down a federal anti-trust
+            suit, the giant sold reputation and security as well as hardware,
+            and was the most admired American corporation of the 2000s.
+          </p>
+        </div>
+        <div class="history-item-3">
+          <p>
+            Task Manager 3000 pioneer information technology over the years, and
+            it stands today at the forefront of a worldwide industry that is
+            revolutionizing the way in which enterprises, organizations and
+            people operate and thrive.
+          </p>
+        </div>
+      </div>
 
-      <div id="tasks_wrapper">
+      <section id="tasks_wrapper">
         <header>
           <div class="page-banner">
             <h1 class="title">Tasks</h1>
@@ -204,12 +289,12 @@
           <input type="checkbox" id="done" checked /><label for="done"
             >done</label
           >
-          <h2 class="title">tasks</h2>
+          <h2 class="title">Tasks list</h2>
           <ul></ul>
         </div>
-      </div>
+      </section>
 
-      <div id="messages_wrapper">
+      <section id="messages_wrapper">
         <header>
           <div class="page-banner">
             <h1 class="title">Messages</h1>
@@ -219,15 +304,14 @@
                 <button id="add_message_button">send</button>
                 <textarea
                   id="message_text"
-                  type="text"
                   placeholder="Your message..."
                   style="resize: none;"
                 ></textarea>
               </form>
             </div>
-            <div>
+            
               <select id="select_message" multiple> </select>
-            </div>
+            
 
             <form id="search-messages">
               <input type="text" placeholder="Search messages..." />
@@ -238,7 +322,7 @@
         <button id="inbox_message_button">Inbox</button>
 
         <div id="message-list_sent">
-          <h2 class="title">sent messages</h2>
+          <h2 class="title">Sent messages</h2>
           <ul></ul>
         </div>
         <div id="message-list_inbox" class="messages_invis">
@@ -248,25 +332,25 @@
           <input type="checkbox" id="seen" checked /><label for="seen"
             >seen</label
           >
-          <h2 class="title">inbox</h2>
+          <h2 class="title">Inbox</h2>
           <ul></ul>
         </div>
-      </div>
-      <div class="pagination">
+      </section>
+      <section class="pagination">
         <div class="tableList" id="listingTable"></div>
         <div class="pagination-block">
           <span class="pageButton outline-none" id="button_prev">Prev</span>
           <span id="page_number" class="outline-none"></span>
           <span class="pageButton outline-none" id="button_next">Next</span>
         </div>
-      </div>
+      </section>
     </main>
     <footer>
       <div id="footer_left">
         <p>&copy; 2019 Task Management 3000, All rights reserved</p>
       </div>
       <div id="footer_right">
-        <input type="button" value="Share" id="share_button" />
+        <button id="share_button">Share</button>
         <br />
         <div id="share_link_container">
           <span>X</span>
@@ -276,7 +360,6 @@
             rows="1"
             cols="30"
             style="resize: none; overflow: hidden; "
-            wrap="off"
           ></textarea>
           <button id="share_link_copy">Copy</button>
         </div>

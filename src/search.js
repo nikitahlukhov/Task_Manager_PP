@@ -44,7 +44,6 @@ for (let i = 0; i < results.length; i++) {
     && results[i].getAttribute('id') != 'search_logged_in'
      && results[i].getAttribute('id') != 'nav_profile'
      && results[i].className != 'about_us'){
-        console.log(results[i].textContent)
         let className = results[i].className
         const li = document.createElement('li')
         li.className = className
@@ -83,6 +82,8 @@ searchInput.addEventListener('keyup', (e) => {
     searchInput.addEventListener('blur', () => {
         input.style.display = 'none'
         magnifier.style.display = 'inline-block'
+        ul.style.display = 'none'
+        searchInput.value = ''
     })
 
 function isLogged(){
