@@ -233,8 +233,9 @@ window.onload = function () {
     
     aboutUs();
     
-    messages(); 
+    
     tasks();
+    messages(); 
     employees()
     
 

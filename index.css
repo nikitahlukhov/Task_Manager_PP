@@ -440,6 +440,7 @@ nav li:hover {
 #message-list_inbox ul {
   list-style-type: none;
   padding: 0;
+  
 }
 
 #task-list li,
@@ -449,6 +450,7 @@ nav li:hover {
   padding: 20px;
   border-left: 5px solid #ddd;
   margin: 20px 10px;
+  z-index: 0;
 }
 
 #task-list li:last-child {
@@ -618,8 +620,8 @@ nav li:hover {
   color: crimson;
 }
 
-#message-list_sent ul li span:nth-child(2).hide_message,
-#message-list_inbox ul li span:nth-child(2).hide_message {
+#message-list_sent ul li span:nth-child(3).hide_message,
+#message-list_inbox ul li span:nth-child(3).hide_message {
   visibility: hidden;
 }
 

@@ -185,12 +185,12 @@ export default function messages() {
         e.target.classList.add('seen');
         userMessages[index].status = 'seen';
       }
-      e.target.childNodes[1].classList.toggle('hide_message');
+      e.target.childNodes[2].classList.toggle('hide_message');
       e.target.lastChild.classList.toggle('hide_message');
       window.localStorage.users = JSON.stringify(users);
     } else if (e.target.className == 'message seen') {
       e.target.lastChild.classList.toggle('hide_message');
-      e.target.childNodes[1].classList.toggle('hide_message');
+      e.target.childNodes[2].classList.toggle('hide_message');
     }
   }
 
@@ -205,9 +205,13 @@ export default function messages() {
     );
     messages = messages.concat(inboxMessages);
     messages.forEach(message => {
-      const messageSubject = message.firstElementChild.textContent.slice(9);
-      const messageBody = message.childNodes[1].textContent;
-
+      let messageSubject = message.childNodes[1].textContent;
+      if(messageSubject == '(no subject)') {
+        messageSubject = '';
+      } 
+      else messageSubject = message.childNodes[1].textContent.slice(9);
+      const messageBody = message.childNodes[2].textContent;
+      console.log(messageSubject)
       if (
         messageSubject.toLowerCase().indexOf(searchInput) != -1 ||
         messageBody.toLowerCase().indexOf(searchInput) != -1
