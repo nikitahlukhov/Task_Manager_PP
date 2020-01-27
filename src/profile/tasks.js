@@ -32,7 +32,7 @@ export default function tasks() {
     
 
     for (let i = 0; i < tasksButton.length; i++) {
-        tasksButton[i].addEventListener('click', () => {
+        tasksButton[i].addEventListener('mousedown', () => {
              hideElements('main')
         document.getElementById('tasks_wrapper').style.display = 'block';
         });

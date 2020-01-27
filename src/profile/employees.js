@@ -7,7 +7,7 @@ export default function employees() {
 
 
       for (let i = 0; i < employeesButton.length; i++) {
-        employeesButton[i].addEventListener('click', () => {
+        employeesButton[i].addEventListener('mousedown', () => {
             hideElements('main');
         document.querySelector('.pagination').style.display = 'block';
         });

@@ -32,7 +32,7 @@ export default function messages() {
 
   
   for (let i = 0; i < messagesButton.length; i++) {
-    messagesButton[i].addEventListener('click', () => {
+    messagesButton[i].addEventListener('mousedown', () => {
          hideElements('main')
     document.getElementById('messages_wrapper').style.display = 'block';
     });

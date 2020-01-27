@@ -18,7 +18,7 @@ export default function login_page() {
 
 
     for (let i = 0; i < login.length; i++) {
-        login[i].addEventListener('click', () => {
+        login[i].addEventListener('mousedown', () => {
             hideElements()
             signUpForm.style.display = 'none';
             signInPage.style.display = 'flex';

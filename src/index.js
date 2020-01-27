@@ -14,20 +14,7 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 }
 
 window.onload = function () {
-    const home = document.querySelectorAll('.home_button');
-    for (let i = 0; i < home.length; i++) {
-        home[i].addEventListener('click', () => {
-            let arr = document.querySelectorAll('main > *');
-                    for (let i=0; i<arr.length; i++){
-                        arr[i].style.display = 'none'; 
-                    }
-            document.querySelector('.carousel-wrapper').style.display = 'flex';
-        });
-    }
-    
-    
-    
-    
+
     if (!window.localStorage.users){
         let registeredUsers = [{
             name: "admin",
@@ -53,7 +40,7 @@ window.onload = function () {
         {
             name: "nikita",
             password: "nikita",
-            coreSkill: "Dota 2",
+            coreSkill: "Front-End",
             loggedIn: false,
             messages: {
                 sentMessages: [],
@@ -64,7 +51,7 @@ window.onload = function () {
         {
             name: "vova",
             password: "vova",
-            coreSkill: "Intelligence",
+            coreSkill: "CSS",
             loggedIn: false,
             messages: {
                 sentMessages: [],
@@ -74,8 +61,8 @@ window.onload = function () {
         },
         {
             name: "kolya",
-            password: "vova",
-            coreSkill: "energy",
+            password: "kolya",
+            coreSkill: "C++",
             loggedIn: false,
             messages: {
                 sentMessages: [],
@@ -85,8 +72,8 @@ window.onload = function () {
         },
         {
             name: "katya",
-            password: "vova",
-            coreSkill: "wine",
+            password: "katya",
+            coreSkill: "C#",
             loggedIn: false,
             messages: {
                 sentMessages: [],
@@ -96,8 +83,8 @@ window.onload = function () {
         },
         {
             name: "masha",
-            password: "vova",
-            coreSkill: "love",
+            password: "masha",
+            coreSkill: "Python",
             loggedIn: false,
             messages: {
                 sentMessages: [],
@@ -107,8 +94,8 @@ window.onload = function () {
         },
         {
             name: "mazur",
-            password: "vova",
-            coreSkill: "drink",
+            password: "mazur",
+            coreSkill: "Angular",
             loggedIn: false,
             messages: {
                 sentMessages: [],
@@ -118,8 +105,8 @@ window.onload = function () {
         },
         {
             name: "bob",
-            password: "vova",
-            coreSkill: "bob",
+            password: "bob",
+            coreSkill: "React",
             loggedIn: false,
             messages: {
                 sentMessages: [],
@@ -129,8 +116,8 @@ window.onload = function () {
         },
         {
             name: "dasha",
-            password: "vova",
-            coreSkill: "marketing",
+            password: "dasha",
+            coreSkill: "Marketing",
             loggedIn: false,
             messages: {
                 sentMessages: [],
@@ -140,8 +127,8 @@ window.onload = function () {
         },
         {
             name: "igor",
-            password: "vova",
-            coreSkill: "Intelligence",
+            password: "igor",
+            coreSkill: "Project Management",
             loggedIn: false,
             messages: {
                 sentMessages: [],
@@ -151,8 +138,8 @@ window.onload = function () {
         },
         {
             name: "sasha",
-            password: "vova",
-            coreSkill: "Intelligence",
+            password: "sasha",
+            coreSkill: "Java",
             loggedIn: false,
             messages: {
                 sentMessages: [],
@@ -161,9 +148,9 @@ window.onload = function () {
             isAdmin: false,
         },
         {
-            name: "mazur",
-            password: "vova",
-            coreSkill: "drink",
+            name: "bill",
+            password: "bill",
+            coreSkill: "HTML",
             loggedIn: false,
             messages: {
                 sentMessages: [],
@@ -172,9 +159,9 @@ window.onload = function () {
             isAdmin: false,
         },
         {
-            name: "bob",
-            password: "vova",
-            coreSkill: "bob",
+            name: "max",
+            password: "max",
+            coreSkill: "JQuery",
             loggedIn: false,
             messages: {
                 sentMessages: [],
@@ -183,9 +170,9 @@ window.onload = function () {
             isAdmin: false,
         },
         {
-            name: "dasha",
-            password: "vova",
-            coreSkill: "marketing",
+            name: "semen",
+            password: "semen",
+            coreSkill: "Bootstrap",
             loggedIn: false,
             messages: {
                 sentMessages: [],
@@ -194,9 +181,9 @@ window.onload = function () {
             isAdmin: false,
         },
         {
-            name: "igor",
-            password: "vova",
-            coreSkill: "Intelligence",
+            name: "yulia",
+            password: "yulia",
+            coreSkill: "Business",
             loggedIn: false,
             messages: {
                 sentMessages: [],
@@ -205,9 +192,9 @@ window.onload = function () {
             isAdmin: false,
         },
         {
-            name: "sasha",
-            password: "vova",
-            coreSkill: "Intelligence",
+            name: "nadia",
+            password: "nadia",
+            coreSkill: "CSS",
             loggedIn: false,
             messages: {
                 sentMessages: [],
@@ -237,14 +224,30 @@ window.onload = function () {
     }
     
     
-    logout();
+    
+    
+    
     search();
+    logout();
     login_page();
     
     aboutUs();
+    
     messages(); 
     tasks();
     employees()
+    
+
+    const home = document.querySelectorAll('.home_button');
+    for (let i = 0; i < home.length; i++) {
+        home[i].addEventListener('mousedown', () => {
+            let arr = document.querySelectorAll('main > *');
+                    for (let i=0; i<arr.length; i++){
+                        arr[i].style.display = 'none'; 
+                    }
+            document.querySelector('.carousel-wrapper').style.display = 'flex';
+        });
+    }
     
     function isLogged(){
         let usersArray = JSON.parse(window.localStorage.users);

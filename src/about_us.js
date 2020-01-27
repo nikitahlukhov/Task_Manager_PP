@@ -6,7 +6,7 @@ export default function aboutUs () {
 
 
     for(let i = 0; i < contacts.length; i++){
-        contacts[i].addEventListener('click', ()=>{
+        contacts[i].addEventListener('mousedown', ()=>{
             let arr = document.querySelectorAll('main > *');
                 for (let i=0; i<arr.length; i++){
                     arr[i].style.display = 'none'; 
@@ -23,7 +23,7 @@ export default function aboutUs () {
     const founders_page = document.querySelector('.founders')
 
     for(let i = 0; i < founders.length; i++){
-        founders[i].addEventListener('click', ()=>{
+        founders[i].addEventListener('mousedown', ()=>{
             let arr = document.querySelectorAll('main > *');
                 for (let i=0; i<arr.length; i++){
                     arr[i].style.display = 'none'; 
@@ -36,7 +36,7 @@ export default function aboutUs () {
     const history_page = document.querySelector('.history')
 
     for(let i = 0; i < history.length; i++){
-        history[i].addEventListener('click', ()=>{
+        history[i].addEventListener('mousedown', ()=>{
             let arr = document.querySelectorAll('main > *');
                 for (let i=0; i<arr.length; i++){
                     arr[i].style.display = 'none'; 

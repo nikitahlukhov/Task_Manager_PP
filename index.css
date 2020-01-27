@@ -9,6 +9,19 @@ main {
   flex-direction: column;
 }
 
+.check,
+.sub_task_invis,
+.invis_task,
+.messages_invis,
+.hide_message,
+.employees_button,
+#nav_profile_ul,
+.about_us_ul,
+#logged_in,
+#logged_out {
+  display: none;
+}
+
 /* header */
 
 header nav ul {
@@ -60,12 +73,7 @@ nav li:hover {
   display: block;
   left: 0;
   top: 102%;
-  z-index: 50;
-}
-
-#nav_profile_ul,
-.about_us_ul {
-  display: none;
+  z-index: 100;
 }
 
 #nav_profile_ul li,
@@ -74,7 +82,7 @@ nav li:hover {
   border-right: 1px solid whitesmoke;
   border-left: 1px solid whitesmoke;
   padding: 10px 20px;
-  list-style-image: url(data:0);
+  -ms-list-style-image: url(data:0);
 }
 
 #nav_profile_ul li:last-child,
@@ -82,14 +90,6 @@ nav li:hover {
   border-bottom: none;
 }
 
-#logged_in,
-#logged_out {
-  display: none;
-}
-
-#employees_button {
-  display: none;
-}
 
 #search_logged_in,
 #search_logged_out {
@@ -237,10 +237,12 @@ nav li:hover {
 
 .contacts {
   display: none;
-  height: 95vh;
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
+  height: 100%;
+  overflow: auto
+  ;
 }
 
 #map {
@@ -254,10 +256,10 @@ nav li:hover {
 }
 
 .contacts #map_info {
-  margin: 2%;
   background-color: white;
-  padding: 2%;
   border-radius: 5%;
+  margin: 2%;
+  padding: 2%;
   border: 1px solid black;
 }
 
@@ -266,6 +268,8 @@ nav li:hover {
 .founders {
   display: none;
   justify-content: center;
+  flex-direction: column;
+  height: 100%;
 }
 
 .item-5 {
@@ -317,13 +321,15 @@ nav li:hover {
 
 .carousel-item h2 {
   position: relative;
-  top: 40%;
   text-align: center;
   margin: 0 auto;
+  top: 35%;
 }
 
 .carousel-item p {
   text-align: center;
+  position: relative;
+  margin: 0 auto;
 }
 
 #item-5:checked ~ .item-5,
@@ -341,6 +347,7 @@ nav li:hover {
   width: 45%;
   flex-wrap: wrap;
   margin: 0 auto;
+  overflow: auto;
   height: 100%;
 }
 
@@ -382,9 +389,6 @@ nav li:hover {
   width: 100%;
 }
 
-.employees_button {
-  display: none;
-}
 /*tasks*/
 #tasks_wrapper,
 #messages_wrapper {
@@ -624,14 +628,6 @@ nav li:hover {
   display: none;
 }
 
-.check,
-.sub_task_invis,
-.invis_task,
-.messages_invis,
-.hide_message {
-  display: none;
-}
-
 /* share button */
 
 #share_link_container {
@@ -740,8 +736,8 @@ footer {
   background-color: black;
   color: whitesmoke;
   text-align: center;
-  padding: 20px 0;
   margin-top: auto;
+  padding: 20px 0;
   width: 100%;
   z-index: 5;
   border-top: 1px solid white;
@@ -789,7 +785,7 @@ button:hover {
   }
  }
 
- @media (max-width: 428px) { 
+ @media (max-width: 552px) { 
 
   header nav ul {
     flex-direction: column;
@@ -799,15 +795,10 @@ button:hover {
   header nav ul li{ 
     border: none;
   }
-  .carousel-item p {
-    position: relative;
-    text-align: center;
-    top: 10%;
-  }
-
-  .carousel-item h2 {
-    top: 42%;
-  }
   
+  
+  footer {
+    flex-direction: column;
+  }
 
  }

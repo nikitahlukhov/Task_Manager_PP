@@ -30,7 +30,7 @@ magnifier.addEventListener('click', ()=>{
 
 //list of nav items
 
-const searchInput = searchBarLi.firstElementChild;
+let searchInput = searchBarLi.firstElementChild;
 const ul = document.createElement('ul');
 ul.style.display = 'none'
 searchBarLi.appendChild(ul)
@@ -58,6 +58,8 @@ for (let i = 0; i < results.length; i++) {
     
 }
 
+
+
 let list = Array.from(ul.children)
 searchInput.addEventListener('keyup', (e) => {
         const searchInputValue = e.target.value.toLowerCase();
@@ -69,6 +71,7 @@ searchInput.addEventListener('keyup', (e) => {
             if (navLi.toLowerCase().indexOf(searchInputValue) != -1) {
                 ul.style.display = 'block'
                 ul.children[i].style.display = 'block';
+                
             } else if (navLi.toLowerCase().indexOf(searchInputValue) == -1) {
                 ul.children[i].style.display = 'none';
             }
@@ -76,8 +79,12 @@ searchInput.addEventListener('keyup', (e) => {
         if (!searchInputValue) {
             ul.style.display = 'none'
         }
+
+        
         
     });
+
+    
 
     searchInput.addEventListener('blur', () => {
         input.style.display = 'none'
@@ -85,6 +92,8 @@ searchInput.addEventListener('keyup', (e) => {
         ul.style.display = 'none'
         searchInput.value = ''
     })
+        
+   
 
 function isLogged(){
     let usersArray = JSON.parse(window.localStorage.users);

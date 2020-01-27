@@ -2,7 +2,7 @@ export default function logout() {
     const logout = document.querySelectorAll('.logout');
 
     for (let i = 0; i < logout.length; i++) {
-        logout[i].addEventListener('click', () => {
+        logout[i].addEventListener('mousedown', () => {
             let usersArray = JSON.parse(window.localStorage.users);
             if (usersArray) {
                 for (let i = 0; i<usersArray.length; i++){
