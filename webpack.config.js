@@ -20,7 +20,7 @@ module.exports = {
                         '@babel/preset-env',
                         {
                           targets: {
-                            browsers: ["IE 11"],
+                            browsers: ["> 1%"],
                           },
                         useBuiltIns: 'usage', 'corejs': 2
                         }

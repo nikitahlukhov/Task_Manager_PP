@@ -344,11 +344,11 @@ nav li:hover {
 
 .history {
   display: none;
-  width: 45%;
+  width: 60%;
   flex-wrap: wrap;
   margin: 0 auto;
   overflow: auto;
-  height: 100%;
+  flex-grow: 1;
 }
 
 .history-item-1 {
